@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+.obsidian/
+.env
+
+# Local machine + private-repo output. Never publish.
+inventory/inventory.json
+inventory/inventory.md
+inventory/churn.md
+wiki/stacks/*
+!wiki/stacks/EXAMPLE.md

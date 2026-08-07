@@ -1,0 +1,55 @@
+name: weekly sweep
+
+# Opens a PR. Never commits to main. The merge/close decision IS the feedback
+# signal the ledger learns from - automating it away would remove the only
+# outcome data this system has.
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # Mondays 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sweep starred repos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 bin/sweep.py --refresh
+
+      # Reconcile needs ~/.claude from a real machine, which CI does not have.
+      # Until a runner syncs inventory/, this job only refreshes candidates -
+      # the local half runs on the laptop. Stated plainly so an empty diff is
+      # not mistaken for "nothing changed".
+      - name: Note
+        run: echo "reconcile.py is local-only; inventory/ is committed from the workstation"
+
+      - name: Open PR if candidates changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(sweep): weekly candidate refresh"
+          branch: sweep/weekly
+          title: "Weekly sweep — review candidates"
+          body: |
+            Automated star sweep. **Nothing is adopted by merging this.**
+
+            Review `inventory/candidates.md`, then for anything worth a closer look:
+
+            ```bash
+            python3 bin/gate.py <repo> --stack <stack>
+            ```
+
+            Record the decision in `ledger.md` — including the noes. The noes
+            are what make the next sweep better.
+          delete-branch: true
