@@ -198,11 +198,14 @@ def main():
     for h in hk:
         binary = h["command"].strip('"').split()[0].strip('"')
         name = os.path.basename(binary).split(".")[0] or binary
-        status = "active (hook)" if h["reachable"] else "MISSING BINARY"
+        # last_used is a DATE column. The hook event belongs in status - putting
+        # it in last_used made 'SessionStart' sort as a future date.
+        status = (f"active ({h['event']} hook)" if h["reachable"]
+                  else f"MISSING BINARY ({h['event']})")
         if not h["reachable"]:
             findings.append(f"hook on {h['event']} points at a missing binary: "
                             f"{h['command'][:60]}")
-        rows.append(("hook", name, 0, h["event"], status))
+        rows.append(("hook", name, 0, "-", status))
 
     # Orphan check: the failure mode that bit us 4x. Artifacts from a plugin
     # that is no longer enabled still load into every session.

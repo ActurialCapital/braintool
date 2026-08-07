@@ -1,6 +1,6 @@
 # Candidates
 
-Swept 1057 stars on 2026-08-07. 110 relevant, 947 filtered out.
+Swept 1057 stars on 2026-08-07. 109 relevant, 948 filtered out.
 
 Nothing here is adopted. Shortlist entries go through `bin/gate.py` (security) and a fit check against `wiki/stacks/` before they reach a PR.
 
@@ -8,7 +8,6 @@ Nothing here is adopted. Shortlist entries go through `bin/gate.py` (security) a
 |---:|---|---:|---|---|---|---|
 | 6 | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 238554 | 2026-08-07 | MIT | claude code, agent, active, popular | The agent harness performance optimization system. Skills, instincts, memory, se |
 | 6 | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 227048 | 2026-08-07 | MIT | claude-code, agent, active, popular | The agent that grows with you |
-| 6 | [mattpocock/skills](https://github.com/mattpocock/skills) | 208670 | 2026-08-07 | MIT | skill, agent, active, popular | Skills for Real Engineers. Straight from my .agents directory. |
 | 6 | [anomalyco/opencode](https://github.com/anomalyco/opencode) | 194735 | 2026-08-07 | MIT | coding agent, agent, active, popular | The open source coding agent. |
 | 6 | [langgenius/dify](https://github.com/langgenius/dify) | 151716 | 2026-08-07 | NOASSERTION | skill, agent, active, popular | Build Agentic workflows, RAG pipelines, with rich AI model and tool support on o |
 | 6 | [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) | 142645 | 2026-08-06 | GPL-3.0 | claude code, agent, active, popular | FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Juni |
@@ -31,3 +30,4 @@ Nothing here is adopted. Shortlist entries go through `bin/gate.py` (security) a
 | 6 | [topoteretes/cognee](https://github.com/topoteretes/cognee) | 29847 | 2026-08-07 | Apache-2.0 | skill, agent, active, popular | Cognee is the open-source AI memory platform for agents. Give your AI agents per |
 | 6 | [tirth8205/code-review-graph](https://github.com/tirth8205/code-review-graph) | 29343 | 2026-08-02 | MIT | claude-code, llm, active, popular | Local-first code intelligence graph for MCP and CLI. Builds a persistent map of  |
 | 6 | [assafelovic/gpt-researcher](https://github.com/assafelovic/gpt-researcher) | 28881 | 2026-07-18 | Apache-2.0 | mcp-server, agent, active, popular | An autonomous agent that conducts deep research on any data using any LLM provid |
+| 6 | [vercel-labs/skills](https://github.com/vercel-labs/skills) | 28277 | 2026-08-05 | MIT | agent skill, agent, active, popular | The open agent skills tool - npx skills |
