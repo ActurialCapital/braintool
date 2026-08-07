@@ -1,6 +1,26 @@
 [
   {
     "archived": false,
+    "description": "Lightpanda: the headless browser designed for AI and automation",
+    "full_name": "lightpanda-io/browser",
+    "html_url": "https://github.com/lightpanda-io/browser",
+    "language": "Zig",
+    "license": "AGPL-3.0",
+    "pushed_at": "2026-08-07T15:02:00Z",
+    "stargazers_count": 33574,
+    "topics": [
+      "browser",
+      "browser-automation",
+      "cdp",
+      "headless",
+      "lightpanda",
+      "playwright",
+      "puppeteer",
+      "zig"
+    ]
+  },
+  {
+    "archived": false,
     "description": "Continuous Inspection",
     "full_name": "SonarSource/sonarqube",
     "html_url": "https://github.com/SonarSource/sonarqube",
@@ -21,7 +41,7 @@
     "html_url": "https://github.com/vshulcz/deja-vu",
     "language": "Go",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:15:30Z",
+    "pushed_at": "2026-08-07T20:54:19Z",
     "stargazers_count": 596,
     "topics": [
       "agent-memory",
@@ -47,7 +67,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T22:59:15Z",
-    "stargazers_count": 12265,
+    "stargazers_count": 12270,
     "topics": []
   },
   {
@@ -58,7 +78,7 @@
     "language": "C",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T16:39:26Z",
-    "stargazers_count": 3219,
+    "stargazers_count": 3234,
     "topics": [
       "avx2",
       "c99",
@@ -90,7 +110,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T04:51:34Z",
-    "stargazers_count": 5136,
+    "stargazers_count": 5137,
     "topics": []
   },
   {
@@ -100,8 +120,8 @@
     "html_url": "https://github.com/reflex-dev/xy",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:10:34Z",
-    "stargazers_count": 1610,
+    "pushed_at": "2026-08-07T21:16:59Z",
+    "stargazers_count": 1611,
     "topics": [
       "charts",
       "data-analysis",
@@ -150,8 +170,8 @@
     "html_url": "https://github.com/herdrdev/herdr",
     "language": "Rust",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:10:28Z",
-    "stargazers_count": 25578,
+    "pushed_at": "2026-08-07T20:54:01Z",
+    "stargazers_count": 25584,
     "topics": [
       "agent",
       "agent-orchestration",
@@ -222,7 +242,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-02T12:45:39Z",
-    "stargazers_count": 29340,
+    "stargazers_count": 29343,
     "topics": [
       "ai-coding",
       "claude",
@@ -257,7 +277,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T16:56:15Z",
-    "stargazers_count": 24388,
+    "stargazers_count": 24390,
     "topics": []
   },
   {
@@ -286,7 +306,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-07-23T16:01:24Z",
-    "stargazers_count": 73806,
+    "stargazers_count": 73817,
     "topics": [
       "agent",
       "ai",
@@ -341,7 +361,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T18:52:18Z",
-    "stargazers_count": 81508,
+    "stargazers_count": 81511,
     "topics": [
       "editor",
       "oss",
@@ -367,7 +387,7 @@
     "language": "C",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T18:17:52Z",
-    "stargazers_count": 23168,
+    "stargazers_count": 23173,
     "topics": []
   },
   {
@@ -378,7 +398,7 @@
     "language": "Python",
     "license": null,
     "pushed_at": "2026-06-17T12:25:19Z",
-    "stargazers_count": 1246,
+    "stargazers_count": 1247,
     "topics": []
   },
   {
@@ -389,7 +409,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:54:59Z",
-    "stargazers_count": 1172,
+    "stargazers_count": 1173,
     "topics": [
       "ai-agent",
       "browser-extension",
@@ -428,7 +448,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-06T23:36:56Z",
-    "stargazers_count": 4938,
+    "stargazers_count": 4939,
     "topics": [
       "android",
       "clinical-nlp",
@@ -470,8 +490,8 @@
     "html_url": "https://github.com/langchain-ai/openwiki",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:59:13Z",
-    "stargazers_count": 14515,
+    "pushed_at": "2026-08-07T21:18:04Z",
+    "stargazers_count": 14519,
     "topics": []
   },
   {
@@ -482,7 +502,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T06:23:53Z",
-    "stargazers_count": 30229,
+    "stargazers_count": 30235,
     "topics": [
       "ai-agent",
       "algorithmic-trading",
@@ -533,7 +553,7 @@
     "language": "Python",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T18:57:29Z",
-    "stargazers_count": 4847,
+    "stargazers_count": 4848,
     "topics": [
       "ai",
       "code-complexity",
@@ -560,7 +580,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-06T12:09:49Z",
-    "stargazers_count": 68301,
+    "stargazers_count": 68310,
     "topics": [
       "agent-infrastructure",
       "ai-agent",
@@ -589,7 +609,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T12:22:17Z",
-    "stargazers_count": 28967,
+    "stargazers_count": 28972,
     "topics": [
       "accessibility",
       "cross-platform",
@@ -637,7 +657,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T15:25:23Z",
-    "stargazers_count": 28276,
+    "stargazers_count": 28277,
     "topics": []
   },
   {
@@ -670,7 +690,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T08:22:11Z",
-    "stargazers_count": 9954,
+    "stargazers_count": 9955,
     "topics": [
       "agentic-ai",
       "ai-agents",
@@ -742,8 +762,8 @@
     "html_url": "https://github.com/DietrichGebert/ponytail",
     "language": "JavaScript",
     "license": "MIT",
-    "pushed_at": "2026-07-15T21:32:15Z",
-    "stargazers_count": 98196,
+    "pushed_at": "2026-08-07T21:14:24Z",
+    "stargazers_count": 98206,
     "topics": [
       "agent-skills",
       "ai-agents",
@@ -765,7 +785,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-07-31T08:52:00Z",
-    "stargazers_count": 9337,
+    "stargazers_count": 9338,
     "topics": [
       "agent",
       "ai",
@@ -786,7 +806,7 @@
     "language": "Shell",
     "license": "GPL-3.0",
     "pushed_at": "2026-08-07T14:49:54Z",
-    "stargazers_count": 62480,
+    "stargazers_count": 62488,
     "topics": [
       "analyzer",
       "appcleaner",
@@ -851,7 +871,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T16:41:46Z",
-    "stargazers_count": 13004,
+    "stargazers_count": 13012,
     "topics": [
       "markdown",
       "nodejs",
@@ -925,7 +945,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T16:12:41Z",
-    "stargazers_count": 49170,
+    "stargazers_count": 49169,
     "topics": [
       "classification",
       "coco",
@@ -984,7 +1004,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-06T02:46:10Z",
-    "stargazers_count": 17077,
+    "stargazers_count": 17078,
     "topics": [
       "agent",
       "ai-agents",
@@ -1000,8 +1020,8 @@
     "html_url": "https://github.com/headroomlabs-ai/headroom",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T02:27:48Z",
-    "stargazers_count": 65384,
+    "pushed_at": "2026-08-07T20:45:27Z",
+    "stargazers_count": 65388,
     "topics": [
       "agent",
       "ai",
@@ -1033,7 +1053,7 @@
     "language": "Python",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T20:07:07Z",
-    "stargazers_count": 84927,
+    "stargazers_count": 84930,
     "topics": []
   },
   {
@@ -1094,7 +1114,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T04:57:20Z",
-    "stargazers_count": 15743,
+    "stargazers_count": 15744,
     "topics": [
       "agent-skills",
       "self-evolving-agents"
@@ -1132,7 +1152,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T06:15:00Z",
-    "stargazers_count": 67278,
+    "stargazers_count": 67279,
     "topics": [
       "agentic-ai",
       "agentic-framework",
@@ -1196,7 +1216,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-07-30T02:54:18Z",
-    "stargazers_count": 77872,
+    "stargazers_count": 77873,
     "topics": [
       "antigravity-skills",
       "business-knowledge",
@@ -1262,7 +1282,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T19:38:14Z",
-    "stargazers_count": 44769,
+    "stargazers_count": 44773,
     "topics": []
   },
   {
@@ -1284,7 +1304,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-04T14:56:38Z",
-    "stargazers_count": 46219,
+    "stargazers_count": 46222,
     "topics": [
       "agents",
       "ai",
@@ -1348,7 +1368,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T17:55:55Z",
-    "stargazers_count": 125770,
+    "stargazers_count": 125774,
     "topics": [
       "ai",
       "copilot",
@@ -1378,7 +1398,7 @@
     "language": "Swift",
     "license": "MIT",
     "pushed_at": "2026-08-07T01:08:26Z",
-    "stargazers_count": 4974,
+    "stargazers_count": 4975,
     "topics": [
       "ai",
       "macos",
@@ -1427,7 +1447,7 @@
     "language": "Java",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:10:54Z",
-    "stargazers_count": 18550,
+    "stargazers_count": 18569,
     "topics": [
       "aws",
       "aws-emulation",
@@ -1449,7 +1469,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T09:50:53Z",
-    "stargazers_count": 24908,
+    "stargazers_count": 24910,
     "topics": [
       "ai-agents",
       "ai-gateway",
@@ -1545,7 +1565,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-05-10T09:53:33Z",
-    "stargazers_count": 5573,
+    "stargazers_count": 5574,
     "topics": []
   },
   {
@@ -1556,7 +1576,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T11:49:54Z",
-    "stargazers_count": 3540,
+    "stargazers_count": 3542,
     "topics": [
       "agentic-coding",
       "ai",
@@ -1586,8 +1606,8 @@
     "html_url": "https://github.com/trycua/cua",
     "language": "HTML",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:33:00Z",
-    "stargazers_count": 21020,
+    "pushed_at": "2026-08-07T20:56:02Z",
+    "stargazers_count": 21022,
     "topics": [
       "agent",
       "ai-agent",
@@ -1617,7 +1637,7 @@
     "language": null,
     "license": "MIT",
     "pushed_at": "2026-06-08T16:12:01Z",
-    "stargazers_count": 44358,
+    "stargazers_count": 44363,
     "topics": [
       "agents",
       "agentskills",
@@ -1645,7 +1665,7 @@
     "language": "C",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:50:36Z",
-    "stargazers_count": 65311,
+    "stargazers_count": 65315,
     "topics": []
   },
   {
@@ -1656,7 +1676,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T16:56:41Z",
-    "stargazers_count": 1801,
+    "stargazers_count": 1802,
     "topics": [
       "markdown",
       "markdown-viewer",
@@ -1674,7 +1694,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-05T03:40:26Z",
-    "stargazers_count": 8833,
+    "stargazers_count": 8835,
     "topics": []
   },
   {
@@ -1685,7 +1705,7 @@
     "language": "Ruby",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-03T10:11:44Z",
-    "stargazers_count": 18219,
+    "stargazers_count": 18220,
     "topics": [
       "document-signing",
       "documents",
@@ -1756,7 +1776,7 @@
     "language": "Go",
     "license": "Apache-2.0",
     "pushed_at": "2026-07-31T06:49:53Z",
-    "stargazers_count": 19647,
+    "stargazers_count": 19666,
     "topics": [
       "cli",
       "containers",
@@ -1788,7 +1808,7 @@
     "language": "Shell",
     "license": "MIT",
     "pushed_at": "2026-08-07T15:50:46Z",
-    "stargazers_count": 208644,
+    "stargazers_count": 208666,
     "topics": []
   },
   {
@@ -1799,7 +1819,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T20:34:56Z",
-    "stargazers_count": 20423,
+    "stargazers_count": 20429,
     "topics": [
       "antidetect",
       "antidetect-browser",
@@ -1819,8 +1839,8 @@
     "html_url": "https://github.com/warpdotdev/warp",
     "language": "Rust",
     "license": "AGPL-3.0",
-    "pushed_at": "2026-08-07T20:30:04Z",
-    "stargazers_count": 64038,
+    "pushed_at": "2026-08-07T21:17:49Z",
+    "stargazers_count": 64039,
     "topics": [
       "bash",
       "linux",
@@ -1886,7 +1906,7 @@
     "language": "Shell",
     "license": "MIT",
     "pushed_at": "2026-05-21T23:33:07Z",
-    "stargazers_count": 23687,
+    "stargazers_count": 23688,
     "topics": [
       "ai-agents",
       "ai-assisted-development",
@@ -1910,7 +1930,7 @@
     "language": "TypeScript",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T02:49:45Z",
-    "stargazers_count": 19351,
+    "stargazers_count": 19350,
     "topics": []
   },
   {
@@ -1947,7 +1967,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T06:31:11Z",
-    "stargazers_count": 47325,
+    "stargazers_count": 47327,
     "topics": [
       "next-auth",
       "nextjs",
@@ -2169,7 +2189,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T06:24:16Z",
-    "stargazers_count": 31231,
+    "stargazers_count": 31232,
     "topics": [
       "gguf",
       "llm",
@@ -2222,8 +2242,8 @@
     "html_url": "https://github.com/microsoft/agent-governance-toolkit",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T14:25:11Z",
-    "stargazers_count": 5752,
+    "pushed_at": "2026-08-07T20:40:57Z",
+    "stargazers_count": 5756,
     "topics": [
       "agent-framework",
       "ai-agents",
@@ -2327,7 +2347,7 @@
     "language": null,
     "license": null,
     "pushed_at": "2026-04-20T10:05:04Z",
-    "stargazers_count": 200507,
+    "stargazers_count": 200510,
     "topics": []
   },
   {
@@ -2338,7 +2358,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T13:41:40Z",
-    "stargazers_count": 75182,
+    "stargazers_count": 75184,
     "topics": [
       "agentic-coding",
       "ai-coding",
@@ -2403,7 +2423,7 @@
     "language": "Go",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T18:05:05Z",
-    "stargazers_count": 44688,
+    "stargazers_count": 44691,
     "topics": []
   },
   {
@@ -2414,7 +2434,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-04T13:44:52Z",
-    "stargazers_count": 96693,
+    "stargazers_count": 96694,
     "topics": [
       "ai",
       "anthropic",
@@ -2435,7 +2455,7 @@
     "html_url": "https://github.com/InsForge/InsForge",
     "language": "TypeScript",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T19:46:01Z",
+    "pushed_at": "2026-08-07T21:07:56Z",
     "stargazers_count": 12667,
     "topics": [
       "ai",
@@ -2461,7 +2481,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-06T16:45:55Z",
-    "stargazers_count": 103980,
+    "stargazers_count": 103991,
     "topics": [
       "ai-agents",
       "antigravity",
@@ -2519,7 +2539,7 @@
     "language": "Java",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T12:36:20Z",
-    "stargazers_count": 28252,
+    "stargazers_count": 28253,
     "topics": [
       "a11y",
       "accessibility",
@@ -2569,7 +2589,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:35:07Z",
-    "stargazers_count": 63158,
+    "stargazers_count": 63161,
     "topics": [
       "ai",
       "ai-agent",
@@ -2612,7 +2632,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T19:39:50Z",
-    "stargazers_count": 52523,
+    "stargazers_count": 52524,
     "topics": [
       "acp",
       "ai",
@@ -2628,7 +2648,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-06T22:45:51Z",
-    "stargazers_count": 83783,
+    "stargazers_count": 83807,
     "topics": [
       "agent-skills",
       "antigravity",
@@ -2667,7 +2687,7 @@
     "language": null,
     "license": "MIT",
     "pushed_at": "2026-07-31T12:32:42Z",
-    "stargazers_count": 107182,
+    "stargazers_count": 107184,
     "topics": [
       "awesome-list",
       "design-md",
@@ -2689,7 +2709,7 @@
     "language": "TypeScript",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T15:34:06Z",
-    "stargazers_count": 30563,
+    "stargazers_count": 30564,
     "topics": [
       "ai",
       "ai-agent",
@@ -2745,7 +2765,7 @@
     "language": "TypeScript",
     "license": "AGPL-3.0",
     "pushed_at": "2026-07-15T14:48:02Z",
-    "stargazers_count": 10239,
+    "stargazers_count": 10241,
     "topics": []
   },
   {
@@ -2766,8 +2786,8 @@
     "html_url": "https://github.com/usestrix/strix",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T18:24:19Z",
-    "stargazers_count": 49618,
+    "pushed_at": "2026-08-07T21:16:00Z",
+    "stargazers_count": 49631,
     "topics": [
       "agents",
       "ai-hacking",
@@ -2826,7 +2846,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-07-30T01:58:00Z",
-    "stargazers_count": 31172,
+    "stargazers_count": 31174,
     "topics": [
       "ai",
       "ai-agents",
@@ -2879,7 +2899,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-05T21:39:15Z",
-    "stargazers_count": 11953,
+    "stargazers_count": 11952,
     "topics": [
       "document-ocr",
       "document-processing",
@@ -2898,7 +2918,7 @@
     "language": "Rust",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T20:28:22Z",
-    "stargazers_count": 8525,
+    "stargazers_count": 8526,
     "topics": [
       "macos-app",
       "portfolio-tracker",
@@ -2958,7 +2978,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-04-26T06:47:35Z",
-    "stargazers_count": 2190,
+    "stargazers_count": 2191,
     "topics": []
   },
   {
@@ -3007,7 +3027,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T19:07:48Z",
-    "stargazers_count": 69685,
+    "stargazers_count": 69687,
     "topics": [
       "agent",
       "deepseek",
@@ -3241,7 +3261,7 @@
     "language": "Ruby",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T19:33:19Z",
-    "stargazers_count": 9322,
+    "stargazers_count": 9323,
     "topics": []
   },
   {
@@ -3252,7 +3272,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T13:38:27Z",
-    "stargazers_count": 79512,
+    "stargazers_count": 79513,
     "topics": [
       "agent",
       "agentic",
@@ -3282,7 +3302,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:30:03Z",
-    "stargazers_count": 126789,
+    "stargazers_count": 126795,
     "topics": []
   },
   {
@@ -3336,7 +3356,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:26:30Z",
-    "stargazers_count": 88829,
+    "stargazers_count": 88831,
     "topics": [
       "awesome",
       "claude",
@@ -3367,8 +3387,8 @@
     "html_url": "https://github.com/obra/superpowers",
     "language": "Shell",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:39:47Z",
-    "stargazers_count": 268680,
+    "pushed_at": "2026-08-07T20:42:37Z",
+    "stargazers_count": 268695,
     "topics": [
       "ai",
       "brainstorming",
@@ -3388,7 +3408,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-05T17:42:26Z",
-    "stargazers_count": 28501,
+    "stargazers_count": 28502,
     "topics": [
       "agent",
       "ai",
@@ -3408,7 +3428,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:45:50Z",
-    "stargazers_count": 24055,
+    "stargazers_count": 24056,
     "topics": [
       "ci",
       "ci-cd",
@@ -3462,8 +3482,8 @@
     "html_url": "https://github.com/paperclipai/paperclip",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:30:45Z",
-    "stargazers_count": 75827,
+    "pushed_at": "2026-08-07T20:59:51Z",
+    "stargazers_count": 75829,
     "topics": []
   },
   {
@@ -3530,8 +3550,8 @@
     "html_url": "https://github.com/actualbudget/actual",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:24:18Z",
-    "stargazers_count": 28016,
+    "pushed_at": "2026-08-07T21:17:32Z",
+    "stargazers_count": 28018,
     "topics": [
       "budgeting",
       "finance",
@@ -3547,7 +3567,7 @@
     "language": "JavaScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:06:53Z",
-    "stargazers_count": 238547,
+    "stargazers_count": 238552,
     "topics": [
       "ai-agents",
       "anthropic",
@@ -3567,7 +3587,7 @@
     "language": "Python",
     "license": null,
     "pushed_at": "2026-03-26T00:07:37Z",
-    "stargazers_count": 93383,
+    "stargazers_count": 93385,
     "topics": []
   },
   {
@@ -3589,7 +3609,7 @@
     "language": "TypeScript",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T20:02:22Z",
-    "stargazers_count": 9085,
+    "stargazers_count": 9084,
     "topics": [
       "angular",
       "etf",
@@ -3641,7 +3661,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:35:16Z",
-    "stargazers_count": 32920,
+    "stargazers_count": 32921,
     "topics": [
       "agent-skills",
       "ai-scientist",
@@ -3670,7 +3690,7 @@
     "language": "Python",
     "license": "BSD-3-Clause",
     "pushed_at": "2026-08-06T13:00:36Z",
-    "stargazers_count": 72990,
+    "stargazers_count": 72996,
     "topics": [
       "ai",
       "ai-scraping",
@@ -3734,7 +3754,7 @@
     "language": "TypeScript",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T12:13:58Z",
-    "stargazers_count": 19694,
+    "stargazers_count": 19697,
     "topics": [
       "antigravity",
       "claude",
@@ -3765,8 +3785,8 @@
     "html_url": "https://github.com/NousResearch/hermes-agent",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:52:56Z",
-    "stargazers_count": 227039,
+    "pushed_at": "2026-08-07T21:17:02Z",
+    "stargazers_count": 227046,
     "topics": [
       "ai",
       "ai-agent",
@@ -3794,7 +3814,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T19:17:06Z",
-    "stargazers_count": 3541,
+    "stargazers_count": 3542,
     "topics": [
       "agent-sandbox",
       "agent-security",
@@ -3952,7 +3972,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T13:18:45Z",
-    "stargazers_count": 32526,
+    "stargazers_count": 32527,
     "topics": [
       "agent",
       "agentic",
@@ -3971,8 +3991,8 @@
     "html_url": "https://github.com/Untrivial-ai/agent-orchestrator",
     "language": "Go",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T18:18:44Z",
-    "stargazers_count": 8852,
+    "pushed_at": "2026-08-07T20:53:46Z",
+    "stargazers_count": 8853,
     "topics": [
       "agent-fleet",
       "agent-swarm",
@@ -4157,7 +4177,7 @@
     "html_url": "https://github.com/nearai/ironclaw",
     "language": "Rust",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:37:24Z",
+    "pushed_at": "2026-08-07T21:17:27Z",
     "stargazers_count": 12597,
     "topics": [
       "codeact",
@@ -4185,8 +4205,8 @@
     "html_url": "https://github.com/openclaw/openclaw",
     "language": "TypeScript",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:38:41Z",
-    "stargazers_count": 385467,
+    "pushed_at": "2026-08-07T21:20:24Z",
+    "stargazers_count": 385470,
     "topics": [
       "ai",
       "assistant",
@@ -4216,7 +4236,7 @@
     "language": "JavaScript",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-05T18:34:03Z",
-    "stargazers_count": 89996,
+    "stargazers_count": 90001,
     "topics": [
       "ai",
       "ai-agents",
@@ -4348,7 +4368,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T18:33:01Z",
-    "stargazers_count": 27804,
+    "stargazers_count": 27805,
     "topics": [
       "artificial-intelligence",
       "cloud-ml",
@@ -4491,7 +4511,7 @@
     "html_url": "https://github.com/FalkorDB/FalkorDB",
     "language": "Rust",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:29:26Z",
+    "pushed_at": "2026-08-07T20:56:31Z",
     "stargazers_count": 5413,
     "topics": [
       "cloud-database",
@@ -4513,7 +4533,7 @@
     "language": "Python",
     "license": null,
     "pushed_at": "2026-07-24T07:48:01Z",
-    "stargazers_count": 72025,
+    "stargazers_count": 72027,
     "topics": [
       "agent-skills",
       "ai-agents",
@@ -4771,7 +4791,7 @@
     "html_url": "https://github.com/AsyncFuncAI/deepwiki-open",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-04T08:15:26Z",
+    "pushed_at": "2026-08-07T20:41:52Z",
     "stargazers_count": 17586,
     "topics": [
       "ai",
@@ -5120,7 +5140,7 @@
     "language": null,
     "license": "GPL-3.0",
     "pushed_at": "2026-08-06T22:48:55Z",
-    "stargazers_count": 142644,
+    "stargazers_count": 142645,
     "topics": [
       "ai",
       "bolt",
@@ -5173,7 +5193,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-05T09:27:23Z",
-    "stargazers_count": 2356,
+    "stargazers_count": 2357,
     "topics": [
       "llm-guardrails",
       "llm-red-teaming",
@@ -5355,7 +5375,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-03-12T14:26:14Z",
-    "stargazers_count": 23505,
+    "stargazers_count": 23508,
     "topics": []
   },
   {
@@ -5365,7 +5385,7 @@
     "html_url": "https://github.com/simstudioai/sim",
     "language": "TypeScript",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:17:07Z",
+    "pushed_at": "2026-08-07T21:11:06Z",
     "stargazers_count": 29366,
     "topics": [
       "agent-workflow",
@@ -5521,7 +5541,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:16:51Z",
-    "stargazers_count": 27486,
+    "stargazers_count": 27487,
     "topics": [
       "ai",
       "deepagents",
@@ -5724,7 +5744,7 @@
     "language": "TypeScript",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T16:47:23Z",
-    "stargazers_count": 21131,
+    "stargazers_count": 21133,
     "topics": [
       "ai-app-builder",
       "anthropic",
@@ -5855,7 +5875,7 @@
     "language": "TypeScript",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T15:43:35Z",
-    "stargazers_count": 14806,
+    "stargazers_count": 14809,
     "topics": [
       "agent-framework",
       "agent-skills",
@@ -5876,7 +5896,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-07-06T14:05:33Z",
-    "stargazers_count": 3375,
+    "stargazers_count": 3374,
     "topics": [
       "agents",
       "ai",
@@ -5905,7 +5925,7 @@
     "html_url": "https://github.com/vitali87/code-graph-rag",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:34:32Z",
+    "pushed_at": "2026-08-07T21:15:55Z",
     "stargazers_count": 2561,
     "topics": [
       "ai",
@@ -6155,7 +6175,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T20:09:21Z",
-    "stargazers_count": 10457,
+    "stargazers_count": 10458,
     "topics": [
       "agentic-framework",
       "ai",
@@ -6204,7 +6224,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T16:40:23Z",
-    "stargazers_count": 15176,
+    "stargazers_count": 15177,
     "topics": [
       "ag-ui-protocol",
       "agent-frontend",
@@ -6261,8 +6281,8 @@
     "html_url": "https://github.com/anomalyco/opencode",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:34:26Z",
-    "stargazers_count": 194720,
+    "pushed_at": "2026-08-07T21:16:17Z",
+    "stargazers_count": 194733,
     "topics": []
   },
   {
@@ -6316,7 +6336,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-04-24T09:17:34Z",
-    "stargazers_count": 27696,
+    "stargazers_count": 27698,
     "topics": [
       "agent",
       "ai-agents",
@@ -6356,7 +6376,7 @@
     "html_url": "https://github.com/PrefectHQ/fastmcp",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T16:51:33Z",
+    "pushed_at": "2026-08-07T20:49:38Z",
     "stargazers_count": 27103,
     "topics": [
       "agents",
@@ -6413,8 +6433,8 @@
     "html_url": "https://github.com/getzep/graphiti",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T19:03:18Z",
-    "stargazers_count": 29658,
+    "pushed_at": "2026-08-07T20:45:54Z",
+    "stargazers_count": 29660,
     "topics": [
       "agents",
       "graph",
@@ -6450,8 +6470,8 @@
     "html_url": "https://github.com/odoo/odoo",
     "language": "Python",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:37:32Z",
-    "stargazers_count": 53560,
+    "pushed_at": "2026-08-07T21:12:14Z",
+    "stargazers_count": 53561,
     "topics": [
       "apps",
       "business",
@@ -6495,8 +6515,8 @@
     "html_url": "https://github.com/vllm-project/vllm",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:30:44Z",
-    "stargazers_count": 88458,
+    "pushed_at": "2026-08-07T21:16:14Z",
+    "stargazers_count": 88460,
     "topics": [
       "amd",
       "blackwell",
@@ -6574,7 +6594,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-06T18:27:59Z",
-    "stargazers_count": 108194,
+    "stargazers_count": 108197,
     "topics": [
       "ai-agents",
       "ai-tools",
@@ -6593,7 +6613,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T19:48:11Z",
-    "stargazers_count": 23510,
+    "stargazers_count": 23527,
     "topics": [
       "authentication",
       "authentik",
@@ -6621,7 +6641,7 @@
     "html_url": "https://github.com/jax-ml/jax",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T19:50:32Z",
+    "pushed_at": "2026-08-07T21:15:38Z",
     "stargazers_count": 36116,
     "topics": [
       "jax"
@@ -6634,8 +6654,8 @@
     "html_url": "https://github.com/browserbase/stagehand",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T18:54:57Z",
-    "stargazers_count": 23761,
+    "pushed_at": "2026-08-07T20:48:55Z",
+    "stargazers_count": 23762,
     "topics": [
       "agents",
       "ai",
@@ -6700,7 +6720,7 @@
     "language": "TypeScript",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T16:48:12Z",
-    "stargazers_count": 12985,
+    "stargazers_count": 12987,
     "topics": [
       "agent",
       "browser",
@@ -6854,7 +6874,7 @@
     "language": "Python",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-01T17:44:51Z",
-    "stargazers_count": 95804,
+    "stargazers_count": 95805,
     "topics": [
       "ai",
       "ai-deep-fake",
@@ -7129,7 +7149,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T12:43:33Z",
-    "stargazers_count": 764,
+    "stargazers_count": 765,
     "topics": [
       "banzhaf-index",
       "explainability",
@@ -7212,7 +7232,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2025-08-28T03:24:37Z",
-    "stargazers_count": 104123,
+    "stargazers_count": 104122,
     "topics": []
   },
   {
@@ -7280,7 +7300,7 @@
     "html_url": "https://github.com/yandex/perforator",
     "language": "C++",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T19:29:32Z",
+    "pushed_at": "2026-08-07T20:56:17Z",
     "stargazers_count": 3415,
     "topics": [
       "continuous-profiling",
@@ -7473,7 +7493,7 @@
     "html_url": "https://github.com/oumi-ai/oumi",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:36:55Z",
+    "pushed_at": "2026-08-07T20:40:28Z",
     "stargazers_count": 9368,
     "topics": [
       "dpo",
@@ -7553,7 +7573,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T20:02:07Z",
-    "stargazers_count": 4815,
+    "stargazers_count": 4816,
     "topics": [
       "ai",
       "knowledge-graphs",
@@ -7822,7 +7842,7 @@
     "html_url": "https://github.com/tursodatabase/turso",
     "language": "Rust",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:07:02Z",
+    "pushed_at": "2026-08-07T20:49:44Z",
     "stargazers_count": 23745,
     "topics": [
       "database",
@@ -7856,7 +7876,7 @@
     "language": "TypeScript",
     "license": "AGPL-3.0",
     "pushed_at": "2026-08-07T19:29:12Z",
-    "stargazers_count": 162845,
+    "stargazers_count": 162862,
     "topics": [
       "ai",
       "ai-agents",
@@ -7886,8 +7906,8 @@
     "html_url": "https://github.com/pydantic/pydantic-ai",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:37:50Z",
-    "stargazers_count": 19128,
+    "pushed_at": "2026-08-07T21:20:54Z",
+    "stargazers_count": 19129,
     "topics": [
       "agent-framework",
       "genai",
@@ -8012,7 +8032,7 @@
     "language": "Jupyter Notebook",
     "license": "MIT",
     "pushed_at": "2026-05-19T18:42:31Z",
-    "stargazers_count": 18555,
+    "stargazers_count": 18554,
     "topics": [
       "ai",
       "finetuning",
@@ -8316,7 +8336,7 @@
     "html_url": "https://github.com/stanfordnlp/dspy",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:56:56Z",
+    "pushed_at": "2026-08-07T21:15:13Z",
     "stargazers_count": 36684,
     "topics": []
   },
@@ -8459,8 +8479,8 @@
     "html_url": "https://github.com/langchain-ai/langgraph",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:32:23Z",
-    "stargazers_count": 39143,
+    "pushed_at": "2026-08-07T20:40:15Z",
+    "stargazers_count": 39144,
     "topics": [
       "agents",
       "ai",
@@ -8501,7 +8521,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-06T17:09:44Z",
-    "stargazers_count": 120779,
+    "stargazers_count": 120780,
     "topics": [
       "base-ui",
       "components",
@@ -8647,7 +8667,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-01-21T10:12:33Z",
-    "stargazers_count": 69701,
+    "stargazers_count": 69700,
     "topics": [
       "agent",
       "gpt",
@@ -8782,8 +8802,8 @@
     "html_url": "https://github.com/CopilotKit/CopilotKit",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:21:18Z",
-    "stargazers_count": 36615,
+    "pushed_at": "2026-08-07T21:18:22Z",
+    "stargazers_count": 36616,
     "topics": [
       "agent",
       "agent-native",
@@ -8899,7 +8919,7 @@
     "html_url": "https://github.com/posit-dev/positron",
     "language": "TypeScript",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:24:09Z",
+    "pushed_at": "2026-08-07T21:10:30Z",
     "stargazers_count": 4223,
     "topics": []
   },
@@ -9047,7 +9067,7 @@
     "html_url": "https://github.com/pytorch/pytorch",
     "language": "Python",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:34:24Z",
+    "pushed_at": "2026-08-07T21:21:12Z",
     "stargazers_count": 102268,
     "topics": [
       "autograd",
@@ -9067,7 +9087,7 @@
     "html_url": "https://github.com/reflex-dev/reflex",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:29:10Z",
+    "pushed_at": "2026-08-07T21:14:04Z",
     "stargazers_count": 28791,
     "topics": [
       "dashboard",
@@ -9350,7 +9370,7 @@
     "html_url": "https://github.com/edtechre/pybroker",
     "language": "Python",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:34:48Z",
+    "pushed_at": "2026-08-07T20:49:18Z",
     "stargazers_count": 3470,
     "topics": [
       "ai",
@@ -9435,7 +9455,7 @@
     "language": "Jupyter Notebook",
     "license": null,
     "pushed_at": "2026-07-23T21:58:35Z",
-    "stargazers_count": 9599,
+    "stargazers_count": 9598,
     "topics": [
       "automatic-labeling-system",
       "computer-vision",
@@ -9505,7 +9525,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-03T03:30:58Z",
-    "stargazers_count": 131304,
+    "stargazers_count": 131309,
     "topics": [
       "agents",
       "llms",
@@ -9570,8 +9590,8 @@
     "html_url": "https://github.com/Mintplex-Labs/anything-llm",
     "language": "JavaScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:49:49Z",
-    "stargazers_count": 64466,
+    "pushed_at": "2026-08-07T20:52:21Z",
+    "stargazers_count": 64467,
     "topics": [
       "agent-computer",
       "agent-harness",
@@ -9883,7 +9903,7 @@
     "language": "Rust",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-01T23:18:17Z",
-    "stargazers_count": 67861,
+    "stargazers_count": 67862,
     "topics": [
       "acp",
       "coding-agent",
@@ -9911,7 +9931,7 @@
     "html_url": "https://github.com/agno-agi/agno",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T18:50:17Z",
+    "pushed_at": "2026-08-07T20:50:24Z",
     "stargazers_count": 41619,
     "topics": [
       "agents",
@@ -9984,7 +10004,7 @@
     "html_url": "https://github.com/NVIDIA/garak",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-04T19:05:37Z",
+    "pushed_at": "2026-08-07T20:57:02Z",
     "stargazers_count": 8729,
     "topics": [
       "ai",
@@ -10092,8 +10112,8 @@
     "html_url": "https://github.com/tensorflow/tensorflow",
     "language": "C++",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:30:56Z",
-    "stargazers_count": 196905,
+    "pushed_at": "2026-08-07T21:20:41Z",
+    "stargazers_count": 196906,
     "topics": [
       "deep-learning",
       "deep-neural-networks",
@@ -10807,8 +10827,8 @@
     "html_url": "https://github.com/OpenHands/OpenHands",
     "language": "TypeScript",
     "license": "MIT",
-    "pushed_at": "2026-08-07T19:33:40Z",
-    "stargazers_count": 83391,
+    "pushed_at": "2026-08-07T20:54:03Z",
+    "stargazers_count": 83392,
     "topics": [
       "agent",
       "artificial-intelligence",
@@ -11697,7 +11717,7 @@
     "language": null,
     "license": null,
     "pushed_at": "2025-05-26T12:28:00Z",
-    "stargazers_count": 28725,
+    "stargazers_count": 28724,
     "topics": [
       "awesome",
       "awesome-list",
@@ -11718,7 +11738,7 @@
     "language": null,
     "license": "CC0-1.0",
     "pushed_at": "2026-04-15T22:47:24Z",
-    "stargazers_count": 49933,
+    "stargazers_count": 49932,
     "topics": [
       "applications",
       "apps",
@@ -11794,7 +11814,7 @@
     "html_url": "https://github.com/pandas-dev/pandas",
     "language": "Python",
     "license": "BSD-3-Clause",
-    "pushed_at": "2026-08-07T19:37:22Z",
+    "pushed_at": "2026-08-07T21:20:35Z",
     "stargazers_count": 49491,
     "topics": [
       "alignment",
@@ -12040,7 +12060,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-07-20T10:24:12Z",
-    "stargazers_count": 13608,
+    "stargazers_count": 13609,
     "topics": [
       "ai",
       "artificial-intelligence",
@@ -12059,7 +12079,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-06T07:09:01Z",
-    "stargazers_count": 73898,
+    "stargazers_count": 73899,
     "topics": [
       "agent",
       "ai",
@@ -12150,7 +12170,7 @@
     "language": "Python",
     "license": null,
     "pushed_at": "2025-01-22T07:49:32Z",
-    "stargazers_count": 12922,
+    "stargazers_count": 12926,
     "topics": [
       "algorithmic-trading",
       "algotrading",
@@ -12725,7 +12745,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T13:34:33Z",
-    "stargazers_count": 62777,
+    "stargazers_count": 62780,
     "topics": [
       "agents",
       "ai",
@@ -13105,7 +13125,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-06T13:41:08Z",
-    "stargazers_count": 57416,
+    "stargazers_count": 57415,
     "topics": [
       "ai",
       "ai-tools",
@@ -13203,8 +13223,8 @@
     "html_url": "https://github.com/langchain-ai/langchain",
     "language": "Python",
     "license": "MIT",
-    "pushed_at": "2026-08-07T20:15:31Z",
-    "stargazers_count": 143645,
+    "pushed_at": "2026-08-07T21:10:53Z",
+    "stargazers_count": 143646,
     "topics": [
       "agents",
       "ai",
@@ -13236,7 +13256,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2025-10-28T10:02:13Z",
-    "stargazers_count": 23730,
+    "stargazers_count": 23729,
     "topics": [
       "ai",
       "csv",
@@ -13311,7 +13331,7 @@
     "language": "Python",
     "license": "GPL-3.0",
     "pushed_at": "2026-08-05T11:39:37Z",
-    "stargazers_count": 57384,
+    "stargazers_count": 57385,
     "topics": [
       "deep-face-swap",
       "deep-learning",
@@ -13457,8 +13477,8 @@
     "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
     "language": "Python",
     "license": "NOASSERTION",
-    "pushed_at": "2026-08-07T20:34:30Z",
-    "stargazers_count": 186278,
+    "pushed_at": "2026-08-07T21:10:13Z",
+    "stargazers_count": 186290,
     "topics": [
       "agentic-ai",
       "agents",
@@ -13481,7 +13501,7 @@
     "language": "C++",
     "license": "MIT",
     "pushed_at": "2026-08-07T18:59:53Z",
-    "stargazers_count": 52669,
+    "stargazers_count": 52671,
     "topics": [
       "inference",
       "openai",
@@ -13537,7 +13557,7 @@
     "language": "C++",
     "license": "MIT",
     "pushed_at": "2025-05-27T20:05:19Z",
-    "stargazers_count": 77413,
+    "stargazers_count": 77414,
     "topics": [
       "ai-chat",
       "llm-inference"
@@ -13832,7 +13852,7 @@
     "language": "Jupyter Notebook",
     "license": "AGPL-3.0",
     "pushed_at": "2024-10-22T08:53:04Z",
-    "stargazers_count": 7286,
+    "stargazers_count": 7287,
     "topics": [
       "american-options",
       "brownian-motion",
@@ -14143,7 +14163,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-05T06:11:04Z",
-    "stargazers_count": 312723,
+    "stargazers_count": 312726,
     "topics": [
       "awesome",
       "collections",
@@ -14400,7 +14420,7 @@
     "language": "Rust",
     "license": "MIT",
     "pushed_at": "2026-08-07T19:59:55Z",
-    "stargazers_count": 39297,
+    "stargazers_count": 39298,
     "topics": [
       "arrow",
       "dataframe",
@@ -14420,7 +14440,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-07T16:47:23Z",
-    "stargazers_count": 31267,
+    "stargazers_count": 31268,
     "topics": [
       "cli",
       "closember",
@@ -14595,7 +14615,7 @@
     "language": "HTML",
     "license": null,
     "pushed_at": "2026-08-07T01:45:44Z",
-    "stargazers_count": 28522,
+    "stargazers_count": 28523,
     "topics": [
       "algorithmic-trading-engine",
       "algorithmic-trading-library",
@@ -14893,7 +14913,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T17:42:18Z",
-    "stargazers_count": 19876,
+    "stargazers_count": 19877,
     "topics": [
       "cli",
       "click",
@@ -15229,7 +15249,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-05T15:17:51Z",
-    "stargazers_count": 28078,
+    "stargazers_count": 28079,
     "topics": [
       "archivebox",
       "backups",
@@ -15325,8 +15345,8 @@
     "html_url": "https://github.com/skypilot-org/skypilot",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T18:23:54Z",
-    "stargazers_count": 10459,
+    "pushed_at": "2026-08-07T21:12:10Z",
+    "stargazers_count": 10460,
     "topics": [
       "cloud-computing",
       "cloud-management",
@@ -15727,7 +15747,7 @@
     "language": "TypeScript",
     "license": "MIT",
     "pushed_at": "2026-08-07T16:29:29Z",
-    "stargazers_count": 44657,
+    "stargazers_count": 44660,
     "topics": [
       "backend",
       "chakra-ui",
@@ -15845,7 +15865,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-07T03:44:03Z",
-    "stargazers_count": 5739,
+    "stargazers_count": 5740,
     "topics": [
       "agent-evaluation",
       "ai-red-team",
@@ -15966,7 +15986,7 @@
     "html_url": "https://github.com/openvinotoolkit/openvino",
     "language": "C++",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T19:20:50Z",
+    "pushed_at": "2026-08-07T20:48:22Z",
     "stargazers_count": 10616,
     "topics": [
       "ai",
@@ -16053,7 +16073,7 @@
     "language": "C++",
     "license": "Apache-2.0",
     "pushed_at": "2026-08-06T18:38:34Z",
-    "stargazers_count": 90337,
+    "stargazers_count": 90338,
     "topics": [
       "c-plus-plus",
       "computer-vision",
@@ -16229,7 +16249,7 @@
     "language": "Python",
     "license": "MPL-2.0",
     "pushed_at": "2024-08-16T12:07:14Z",
-    "stargazers_count": 45865,
+    "stargazers_count": 45864,
     "topics": [
       "deep-learning",
       "glow-tts",
@@ -16278,7 +16298,7 @@
     "html_url": "https://github.com/Eventual-Inc/Daft",
     "language": "Rust",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:16:28Z",
+    "pushed_at": "2026-08-07T20:42:32Z",
     "stargazers_count": 5694,
     "topics": [
       "ai-engineering",
@@ -17255,7 +17275,7 @@
     "language": "Jupyter Notebook",
     "license": null,
     "pushed_at": "2026-07-08T15:37:42Z",
-    "stargazers_count": 10295,
+    "stargazers_count": 10296,
     "topics": []
   },
   {
@@ -17488,7 +17508,7 @@
     "language": "Jupyter Notebook",
     "license": "Apache-2.0",
     "pushed_at": "2026-07-23T21:55:35Z",
-    "stargazers_count": 6104,
+    "stargazers_count": 6103,
     "topics": [
       "classification",
       "cnn",
@@ -18008,7 +18028,7 @@
     "language": null,
     "license": "Apache-2.0",
     "pushed_at": "2026-08-02T12:18:31Z",
-    "stargazers_count": 10227,
+    "stargazers_count": 10226,
     "topics": [
       "convolutional-neural-networks",
       "dataset",
@@ -18123,7 +18143,7 @@
     "language": null,
     "license": "CC0-1.0",
     "pushed_at": "2026-06-30T18:21:16Z",
-    "stargazers_count": 493393,
+    "stargazers_count": 493398,
     "topics": [
       "awesome",
       "awesome-list",
@@ -18140,7 +18160,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-07T19:16:26Z",
-    "stargazers_count": 39909,
+    "stargazers_count": 39910,
     "topics": [
       "animations",
       "hacktoberfest",
@@ -18628,7 +18648,7 @@
     "html_url": "https://github.com/streamlit/streamlit",
     "language": "Python",
     "license": "Apache-2.0",
-    "pushed_at": "2026-08-07T20:24:39Z",
+    "pushed_at": "2026-08-07T21:19:21Z",
     "stargazers_count": 45512,
     "topics": [
       "data-analysis",
@@ -18715,7 +18735,7 @@
     "language": "Jupyter Notebook",
     "license": "Apache-2.0",
     "pushed_at": "2026-05-19T23:03:15Z",
-    "stargazers_count": 25605,
+    "stargazers_count": 25606,
     "topics": [
       "deep-learning",
       "deprecated",
@@ -18776,7 +18796,7 @@
     "language": "Python",
     "license": "BSD-3-Clause",
     "pushed_at": "2026-08-07T16:08:16Z",
-    "stargazers_count": 66936,
+    "stargazers_count": 66937,
     "topics": [
       "data-analysis",
       "data-science",
@@ -19025,7 +19045,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-08-05T06:58:49Z",
-    "stargazers_count": 454947,
+    "stargazers_count": 454948,
     "topics": [
       "api",
       "apis",
@@ -19050,7 +19070,7 @@
     "language": "Python",
     "license": "MIT",
     "pushed_at": "2026-07-11T06:02:34Z",
-    "stargazers_count": 36880,
+    "stargazers_count": 36881,
     "topics": [
       "cli",
       "framework",
@@ -19068,7 +19088,7 @@
     "language": "Python",
     "license": "NOASSERTION",
     "pushed_at": "2026-08-04T10:08:24Z",
-    "stargazers_count": 5946,
+    "stargazers_count": 5947,
     "topics": [
       "causal-inference",
       "incubation",
@@ -19521,7 +19541,7 @@
     "language": "Jupyter Notebook",
     "license": "MIT",
     "pushed_at": "2026-08-07T14:09:54Z",
-    "stargazers_count": 20328,
+    "stargazers_count": 20329,
     "topics": [
       "algorithmic-trading",
       "artificial-intelligence",
@@ -19633,7 +19653,7 @@
     "language": "TeX",
     "license": "MIT",
     "pushed_at": "2023-08-21T17:47:04Z",
-    "stargazers_count": 24935,
+    "stargazers_count": 24936,
     "topics": [
       "deep-neural-networks",
       "latex"
@@ -19938,7 +19958,7 @@
     "language": null,
     "license": "CC0-1.0",
     "pushed_at": "2026-04-23T07:21:00Z",
-    "stargazers_count": 2451,
+    "stargazers_count": 2452,
     "topics": [
       "awesome",
       "awesome-list",
@@ -19966,7 +19986,7 @@
     "language": "Python",
     "license": "GPL-3.0",
     "pushed_at": "2026-07-18T13:30:24Z",
-    "stargazers_count": 3423,
+    "stargazers_count": 3424,
     "topics": []
   },
   {
@@ -19977,7 +19997,7 @@
     "language": "Python",
     "license": "Apache-2.0",
     "pushed_at": "2026-07-20T14:12:56Z",
-    "stargazers_count": 7528,
+    "stargazers_count": 7529,
     "topics": [
       "algo-trading",
       "algorithmic-trading",

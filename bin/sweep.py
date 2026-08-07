@@ -31,16 +31,35 @@ NOISE = ["awesome-", "tutorial", "course", "book", "roadmap", "interview",
          "cheatsheet", "papers", "collection of", "curated list"]
 
 
-def fetch():
-    """Page through starred repos via gh. Costs ~11 requests."""
+def fetch(user=None):
+    """Page through starred repos via gh. Costs ~11 requests.
+
+    `user/starred` needs a USER token. In GitHub Actions the default
+    GITHUB_TOKEN is a repo-scoped installation token with no user identity, so
+    that endpoint returns 'Resource not accessible by integration'. Star lists
+    are public, so fall back to `users/<login>/starred`, which any token reads.
+    """
+    endpoint = f"users/{user}/starred" if user else "user/starred"
     repos, page = [], 1
     while True:
         out = subprocess.run(
-            ["gh", "api", f"user/starred?per_page=100&page={page}",
+            ["gh", "api", f"{endpoint}?per_page=100&page={page}",
              "--jq", ".[] | {full_name, description, stargazers_count, pushed_at, "
                      "archived, license: (.license.spdx_id // null), "
                      "topics, html_url, language}"],
             capture_output=True, text=True)
+        if out.returncode and page == 1 and not user:
+            # No user identity on this token - retry against the public endpoint.
+            login = subprocess.run(
+                ["gh", "api", "user", "--jq", ".login"],
+                capture_output=True, text=True).stdout.strip()
+            if login:
+                print(f"user/starred unavailable; falling back to users/{login}/starred")
+                return fetch(user=login)
+            print("ERROR: cannot resolve a GitHub user for the star sweep.\n"
+                  "  In Actions, set STARS_USER to the account whose stars to sweep.",
+                  file=sys.stderr)
+            return []
         if out.returncode or not out.stdout.strip():
             break
         batch = [json.loads(l) for l in out.stdout.strip().splitlines() if l.strip()]
@@ -134,10 +153,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh", action="store_true")
     ap.add_argument("--top", type=int, default=25)
+    ap.add_argument("--user", default=None,
+                    help="sweep this account's public stars "
+                         "(needed in CI, where the token has no user identity)")
     args = ap.parse_args()
 
     if args.refresh or not CACHE.exists():
-        repos = fetch()
+        repos = fetch(args.user)
         print(f"fetched {len(repos)} starred repos")
     else:
         repos = json.loads(CACHE.read_text())

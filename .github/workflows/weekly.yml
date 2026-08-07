@@ -23,10 +23,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      # --user is required here. GITHUB_TOKEN is a repo-scoped installation
+      # token with no user identity, so `user/starred` returns "Resource not
+      # accessible by integration". Star lists are public, so sweep the owner's
+      # public stars instead.
       - name: Sweep starred repos
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 bin/sweep.py --refresh
+        run: python3 bin/sweep.py --refresh --user ${{ github.repository_owner }}
 
       # Reconcile needs ~/.claude from a real machine, which CI does not have.
       # Until a runner syncs inventory/, this job only refreshes candidates -
