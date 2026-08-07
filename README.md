@@ -94,3 +94,11 @@ ledger.md     every adopt/reject/remove decision + evidence  ← the product
 3. **Look at everything, adopt almost nothing, write down every no.**
 4. **Facts expire.** Every page carries `verified_at`. Unverified is stale by default.
 5. **Ground truth beats the catalog.** The wiki is wrong the moment it disagrees with disk.
+
+## Patterns
+
+Recurring lessons, each with occurrences and evidence:
+
+- [[plugin-removed-artifacts-remain]] — uninstalling disables a plugin; it does
+  not remove what the plugin wrote into `~/.claude`. Four occurrences, ~17.7M.
+- [[acceptance-test]] — the standing test of whether this system works at all.

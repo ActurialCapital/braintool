@@ -11,11 +11,11 @@ cd "$(dirname "$0")/.."
 
 REFRESH="${1:-}"
 
-echo "══ 1/3  reconcile — installed vs. invoked ══"
+echo "══ 1/5  reconcile — installed vs. invoked ══"
 python3 bin/reconcile.py
 
 echo
-echo "══ 2/3  churn — fix:feat, the outcome metric ══"
+echo "══ 2/5  churn — fix:feat, the outcome metric ══"
 # Edit this list to match the repos you actually ship.
 REPOS=(~/GitHub/JJB/HawaiiFarming/aloha-app ~/GitHub/JJB/HawaiiFarming/aloha-data-migrations)
 EXISTING=()
@@ -28,8 +28,16 @@ else
 fi
 
 echo
-echo "══ 3/3  sweep — stars to candidates ══"
+echo "══ 3/5  sweep — stars to candidates ══"
 python3 bin/sweep.py ${REFRESH}
+
+echo
+echo "══ 4/5  pages — ledger to wiki ══"
+python3 bin/pages.py
+
+echo
+echo "══ 5/5  lint — vault health ══"
+python3 bin/lint.py || true
 
 echo
 echo "── next ──"

@@ -18,7 +18,7 @@ found only after the fact:
 - 138 of 143 came from five skills: `brainstorming` (46), `writing-plans` (31),
   `subagent-driven-development` (29), `systematic-debugging` (19),
   `finishing-a-development-branch` (13)
-- Their replacements — [[adhd]], [[design-first]], [[diagnose]] — carry 0, 0 and 1 uses
+- Their replacements — [[adhd]], `design-first`, `diagnose` — carry 0, 0 and 1 uses
 
 The five skills were **deliberately not restored by hand.**
 
@@ -41,7 +41,7 @@ It requires the loop to do all four jobs at once:
 ## Second test — the ag-grid hypothesis
 
 the private stack page `ag-grid` scope: **5.00 fix:feat** (9 feat / 45 fix), the worst real
-scope in the repo, *while* [[ag-mcp]] is installed and connected.
+scope in the repo, *while* `ag-mcp` is installed and connected.
 
 Two possible truths, and the brain should say which:
 
