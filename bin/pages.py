@@ -10,7 +10,7 @@ inventory table is local and gitignored; these pages are the publishable half.
 
 Usage:
     python3 bin/pages.py            # write missing pages
-    python3 bin/pages.py --force    # rewrite all (loses hand edits below the line)
+    python3 bin/pages.py --force    # rewrite all; notes below the marker still survive
 """
 import argparse, re, sys
 from datetime import date
@@ -73,12 +73,14 @@ def main():
     for name, entries in sorted(rows.items()):
         p = TOOLS / f"{name}.md"
         new = render(name, entries)
-        if p.exists() and not args.force:
-            # Preserve anything a human wrote below the marker.
+        if p.exists():
+            # Anything below the marker is yours - typed in Obsidian, usually.
+            # ALWAYS preserved, including under --force. --force means "rewrite
+            # even if the generated half is unchanged", never "discard notes".
             old = p.read_text()
             tail = old.split(MARK, 1)[1] if MARK in old else ""
             new = new.rstrip("\n") + tail
-            if new == old:
+            if new == old and not args.force:
                 kept += 1
                 continue
         p.write_text(new)
