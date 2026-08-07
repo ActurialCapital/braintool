@@ -191,11 +191,18 @@ def main():
             findings.append(f"agent `{name}` never spawned")
         rows.append(("agent", name, used, last.get(f"agent:{name}", "-"), status))
 
+    # Hooks are installed tools too. Omitting them left rtk - which fires on
+    # every Bash call - absent from the inventory, so the sweep re-proposed it
+    # as a fresh discovery. Anything that runs is a row.
     hk = hooks(cfg)
     for h in hk:
+        binary = h["command"].strip('"').split()[0].strip('"')
+        name = os.path.basename(binary).split(".")[0] or binary
+        status = "active (hook)" if h["reachable"] else "MISSING BINARY"
         if not h["reachable"]:
             findings.append(f"hook on {h['event']} points at a missing binary: "
                             f"{h['command'][:60]}")
+        rows.append(("hook", name, 0, h["event"], status))
 
     # Orphan check: the failure mode that bit us 4x. Artifacts from a plugin
     # that is no longer enabled still load into every session.

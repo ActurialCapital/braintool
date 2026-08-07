@@ -46,18 +46,30 @@ SCANNERS = [
     (["mcp-scan", "scan"], "mcp-scan (deprecated name)"),
 ]
 
-# Static red flags worth catching before any scanner runs. Cheap, and they map
-# to the documented attack classes: tool poisoning, rug pulls, name shadowing.
-RED_FLAGS = [
-    ("curl | sh", "pipes a remote script straight into a shell"),
-    ("curl|sh", "pipes a remote script straight into a shell"),
+# Static red flags. Split by file class: a SKILL.md that *mentions* .env while
+# teaching secret hygiene is not a finding. Scanning prose for code tokens
+# produced 10 false positives out of 11 on the first real candidate, which is
+# how a gate trains you to click past it.
+CODE_EXTS = {".py", ".js", ".mjs", ".cjs", ".ts", ".sh", ".bash", ".zsh"}
+DOC_EXTS = {".md", ".markdown", ".txt", ".json", ".yaml", ".yml"}
+
+CODE_FLAGS = [
     ("eval(", "evaluates dynamic code"),
+    ("exec(", "executes dynamic code"),
     ("~/.ssh", "touches SSH keys"),
     ("~/.aws", "touches AWS credentials"),
     (".env", "reads env files"),
     ("base64 -d", "decodes obfuscated payload"),
     ("os.environ", "reads environment"),
     ("subprocess", "spawns processes"),
+    ("child_process", "spawns processes"),
+]
+# In docs, only things that are dangerous *as instructions to follow*.
+DOC_FLAGS = [
+    ("curl | sh", "tells the user to pipe a remote script into a shell"),
+    ("curl|sh", "tells the user to pipe a remote script into a shell"),
+    ("curl | bash", "tells the user to pipe a remote script into a shell"),
+    ("base64 -d", "decodes obfuscated payload"),
 ]
 
 
@@ -71,15 +83,20 @@ def find_scanner():
 def static_scan(path: Path):
     """Grep the tree for red flags. Not a substitute for a real scanner."""
     hits = []
-    exts = {".md", ".py", ".js", ".mjs", ".ts", ".sh", ".json", ".yaml", ".yml"}
     for f in path.rglob("*"):
-        if not f.is_file() or f.suffix not in exts or ".git" in f.parts:
+        if not f.is_file() or ".git" in f.parts:
+            continue
+        if f.suffix in CODE_EXTS:
+            flags = CODE_FLAGS
+        elif f.suffix in DOC_EXTS:
+            flags = DOC_FLAGS
+        else:
             continue
         try:
             body = f.read_text(errors="replace")
         except OSError:
             continue
-        for token, why in RED_FLAGS:
+        for token, why in flags:
             if token in body:
                 hits.append((str(f.relative_to(path)), token, why))
     return hits
@@ -105,7 +122,20 @@ def main():
         could_not_run = any(s in blob for s in (
             "SNYK_TOKEN", "not authenticated", "No such file", "command not found",
             "Usage:", "error: unrecognized", "login"))
+        # "scanned zero items" exits 0 and looks identical to "scanned and
+        # clean". On a repo full of skills/*/SKILL.md the scanner reported
+        # 'no mcp servers or skills found' - a layout mismatch, not a clean
+        # bill of health. Anything not actually examined is inconclusive.
+        # Normalise whitespace first: the scanner hard-wraps its output, so the
+        # phrase arrives as "...or skills\nfound" and an exact match misses it.
+        flat = " ".join(blob.lower().split())
+        scanned_nothing = "no mcp servers or skills found" in flat
         if could_not_run:
+            verdict = 2
+        elif scanned_nothing:
+            print("\n!! scanner examined NOTHING — layout not recognised.\n"
+                  "   This is inconclusive, not clean. Point it at the "
+                  "installed location (e.g. ~/.claude/skills/<name>) instead.")
             verdict = 2
         else:
             verdict = 0 if r.returncode == 0 else 1
