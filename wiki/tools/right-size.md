@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-07
 status: adopted
+scope: global
 ---
 
 # right-size
 
-**adopted** as of 2026-08-07.
+**adopted** as of 2026-08-07, for **global**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-07 | **adopted** | 0 uses (installed today) | Effort-matching gate, written in-house. Trigger-optimisation loop was run and **could not measure it** — its success looks identical to non-invocation. Judge on churn, not invocations. Re-evaluate 2026-09-07. |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-07 | global | **adopted** | 0 uses (installed today) | Effort-matching gate, written in-house. Trigger-optimisation loop was run and **could not measure it** — its success looks identical to non-invocation. Judge on churn, not invocations. Re-evaluate 2026-09-07. |
 
 ## Re-evaluate when
 

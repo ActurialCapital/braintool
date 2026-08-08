@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-07
 status: fixed
+scope: stack:erp-supabase
 ---
 
 # project-mcp
 
-**fixed** as of 2026-08-07.
+**fixed** as of 2026-08-07, for **stack:erp-supabase**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-07 | **fixed** | 25 calls through 2026-08-05, then silence | Declared in `.mcp.json` but never approved, so 32 tools were silently dead. Approved. **Cost of the gap: unmeasured, but it is the project's own database tooling.** |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-07 | stack:erp-supabase | **fixed** | 25 calls through 2026-08-05, then silence | Declared in `.mcp.json` but never approved, so 32 tools were silently dead. Approved. **Cost of the gap: unmeasured, but it is the project's own database tooling.** |
 
 ## Re-evaluate when
 

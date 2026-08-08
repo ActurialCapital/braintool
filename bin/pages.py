@@ -29,31 +29,36 @@ def ledger_rows():
         if not line.startswith("|") or line.count("|") < 5:
             continue
         cells = [c.strip() for c in line.strip("|").split("|")]
-        if len(cells) < 5 or cells[0] in ("Date", "---"):
+        if len(cells) < 6 or cells[0] in ("Date", "---"):
             continue
-        d, tool, decision, evidence, reason = cells[:5]
+        d, tool, scope, decision, evidence, reason = cells[:6]
         m = re.match(r"\[\[([^\]]+)\]\]|`([^`]+)`", tool)
         if not m:
             continue
         name = (m.group(1) or m.group(2)).strip()
-        rows.setdefault(name, []).append((d, decision, evidence, reason))
+        rows.setdefault(name, []).append((d, scope, decision, evidence, reason))
     return rows
 
 
 def render(name, entries):
     latest = entries[-1]
-    decision = re.sub(r"\*\*", "", latest[1])
+    decision = re.sub(r"\*\*", "", latest[2])
+    scopes = sorted({e[1] for e in entries})
     out = [f"---",
            f"verified_at: {latest[0]}",
            f"status: {decision}",
+           f"scope: {', '.join(scopes)}",
            f"---", "",
            f"# {name}", "",
-           f"**{decision}** as of {latest[0]}.", "",
-           "## Decisions", "",
-           "| Date | Decision | Evidence | Reason |",
-           "|---|---|---|---|"]
-    for d, dec, ev, why in entries:
-        out.append(f"| {d} | {dec} | {ev} | {why} |")
+           f"**{decision}** as of {latest[0]}, for **{latest[1]}**.", ""]
+    if len(scopes) > 1:
+        out += ["> Different verdicts in different scopes. Both are true — "
+                "read the row that matches the codebase in front of you.", ""]
+    out += ["## Decisions", "",
+            "| Date | Scope | Decision | Evidence | Reason |",
+            "|---|---|---|---|---|"]
+    for d, sc, dec, ev, why in entries:
+        out.append(f"| {d} | {sc} | {dec} | {ev} | {why} |")
     out += ["", "## Re-evaluate when", "",
             "- the evidence above changes (invocations, health, churn)",
             "- a sweep surfaces a replacement that scores higher on fit",

@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-08
 status: flagged
+scope: global
 ---
 
 # grill-me
 
-**flagged** as of 2026-08-08.
+**flagged** as of 2026-08-08, for **global**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-08 | **flagged** | installed 2026-05-02, **0 invocations** in 2,462 sessions | Installed via `~/.agents/skills/`. Real skill, plausible use (stress-test a plan), never once reached for. Keep or drop — but not "keep and never use". |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-08 | global | **flagged** | installed 2026-05-02, **0 invocations** in 2,462 sessions | Installed via `~/.agents/skills/`. Real skill, plausible use (stress-test a plan), never once reached for. Keep or drop — but not "keep and never use". |
 
 ## Re-evaluate when
 

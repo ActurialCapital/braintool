@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-07
 status: adopted
+scope: global
 ---
 
 # adhd
 
-**adopted** as of 2026-08-07.
+**adopted** as of 2026-08-07, for **global**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-07 | **adopted** | 0 uses (installed today) | Parallel divergent ideation. Partly fills the `superpowers:brainstorming` gap. Re-evaluate 2026-09-07. |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-07 | global | **adopted** | 0 uses (installed today) | Parallel divergent ideation. Partly fills the `superpowers:brainstorming` gap. Re-evaluate 2026-09-07. |
 
 ## Re-evaluate when
 

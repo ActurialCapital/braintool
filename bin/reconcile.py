@@ -104,8 +104,12 @@ def repos():
     out = []
     for line in f.read_text().splitlines():
         line = line.strip()
-        if line and not line.startswith("#") and (Path(line) / ".git").is_dir():
-            out.append(Path(line))
+        if not line or line.startswith("#"):
+            continue
+        path, _, stack = line.partition("|")
+        p = Path(path.strip())
+        if (p / ".git").is_dir():
+            out.append((p, stack.strip() or "global"))
     return out
 
 
@@ -304,7 +308,7 @@ def main():
     # ── per-repo tooling ────────────────────────────────────────────────
     stacks = OUT.parent / "wiki" / "stacks"
     STACK_MARK = "<!-- generated above; your notes below survive -->"
-    for repo in repos():
+    for repo, stack_type in repos():
         items = project_tooling(repo)
         for kind, name in items:
             # Usage counters are machine-wide; a project skill named the same
@@ -322,8 +326,22 @@ def main():
             "\n## What it actually is\n\n_Describe the stack._\n\n"
             "## Fit filter\n\n_The standing noes. Anything matching these is "
             "rejected without a scan._\n")
+        # Ledger decisions that apply here: global ones plus this stack type.
+        applicable = []
+        for ln in (OUT.parent / "ledger.md").read_text().splitlines():
+            if not ln.startswith("|") or ln.count("|") < 6:
+                continue
+            c = [x.strip() for x in ln.strip("|").split("|")]
+            if len(c) < 6 or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", c[0]):
+                continue
+            if c[2] == stack_type or (c[2] == "global" and stack_type != "global"):
+                applicable.append((c[1], c[2], c[3]))
+        scoped = [a for a in applicable if a[1] != "global"]
         body = [f"---", f"verified_at: {date.today().isoformat()}",
-                f"repo: {repo}", f"---", "", f"# Stack: {repo.name}", "",
+                f"repo: {repo}", f"stack_type: {stack_type}", f"---", "",
+                f"# Stack: {repo.name}", "",
+                f"Stack type: **{stack_type}** — ledger decisions scoped to "
+                f"this type apply here.", "",
                 f"**{len(items)} project-level tool(s)** installed in this repo:",
                 ""]
         if items:
@@ -338,7 +356,16 @@ def main():
                 body.append(f"| {k} | {'[[' + n + ']]' if has_page else '`' + n + '`'} |")
         else:
             body += ["_none — this repo uses only the global harness._"]
-        body += ["", "Back to [[MAP]].", "", STACK_MARK]
+        if scoped:
+            body += ["", "## Decisions scoped to this stack", "",
+                     "| Tool | Scope | Decision |", "|---|---|---|"]
+            body += [f"| {t} | {sc} | {d} |" for t, sc, d in scoped]
+        else:
+            body += ["", "## Decisions scoped to this stack", "",
+                     "_None yet — every decision so far was global. When a tool "
+                     "is right here and wrong elsewhere, that is a scoped row._"]
+        body += ["", f"{len(applicable) - len(scoped)} global decision(s) also "
+                 f"apply; see [[ledger]].", "", "Back to [[MAP]].", "", STACK_MARK]
         page.write_text("\n".join(body) + tail)
 
     # Local pages for everything installed that has no public page. Public
@@ -381,11 +408,11 @@ def main():
                "Every repo this brain watches. Each page lists the tooling "
                "installed *in that repo* — the surface the global harness "
                "does not show.", "",
-               "| Repo | Project-level tools | Stack page |",
-               "|---|---:|---|"]
-        for repo in repos():
+               "| Repo | Stack type | Project-level tools | Stack page |",
+               "|---|---|---:|---|"]
+        for repo, stack_type in repos():
             n = len(project_tooling(repo))
-            idx.append(f"| {repo.name} | {n} | [[{repo.name}]] |")
+            idx.append(f"| {repo.name} | {stack_type} | {n} | [[{repo.name}]] |")
         idx += ["", "## How scope works", "",
                 "- **Global** — `~/.claude`, shared by every repo. Rot here "
                 "costs context in every session.",

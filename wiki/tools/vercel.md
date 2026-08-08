@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-07
 status: rescoped
+scope: stack:next-vercel
 ---
 
 # vercel
 
-**rescoped** as of 2026-08-07.
+**rescoped** as of 2026-08-07, for **stack:next-vercel**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-07 | **rescoped** | 0 vercel.json / 0 package refs in <project> repos; <project> deploys to Cloud Run | Not removed — moved from user scope to the two projects that actually use it (see their stack pages). ~20 skills stopped loading in every unrelated session. |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-07 | stack:next-vercel | **rescoped** | 0 vercel.json / 0 package refs in <project> repos; <project> deploys to Cloud Run | Not removed — moved from user scope to the two projects that actually use it (see their stack pages). ~20 skills stopped loading in every unrelated session. |
 
 ## Re-evaluate when
 

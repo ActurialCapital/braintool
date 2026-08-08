@@ -25,6 +25,36 @@ records what was tried and dropped, and why.
 If the tool appears there, lead with that. "You removed this on <date> because
 <reason>" is more useful than a fresh opinion.
 
+## Every verdict is scoped — never answer globally
+
+The ledger's `scope` column holds a **stack type**, not a repo name. The same
+tool is often right for one kind of codebase and wrong for another: heavy
+planning frameworks suit greenfield work and not a mature ERP; a deploy plugin
+is essential to one stack and dead weight in every other session.
+
+So the question is never "is this good?" — it is **"good for which stack?"**
+
+```bash
+grep -E '^\| .*\| stack:' $BRAIN/ledger.md   # scoped decisions
+cat $BRAIN/wiki/stacks/MAP.md                # which repo is which stack type
+```
+
+Match the repo you are working in to its `stack_type` (in `repos.txt` and each
+stack page's frontmatter), then read the rows for that type **plus** the global
+rows. A tool can carry two rows with opposite verdicts in different scopes;
+both are true.
+
+That also decides **where it gets installed** if adopted:
+
+| Verdict | Install location |
+|---|---|
+| useful in every stack | `~/.claude` — global |
+| useful in one stack | that repo's `.claude/` or `.mcp.json` |
+| useful nowhere | a ledger row saying no |
+
+The middle row is the one that gets skipped, and skipping it is how a harness
+fills with tools that help one repo and tax every other session.
+
 ## Then check what is actually installed
 
 ```bash

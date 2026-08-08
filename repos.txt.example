@@ -1,5 +1,11 @@
-# One repo path per line. Churn is measured across these.
-# This file is gitignored (repos.txt) — the paths are yours, not the project's.
-# Copy to repos.txt and edit.
-/path/to/your/repo
-/path/to/another/repo
+# One repo per line:  /path/to/repo | stack:<type>
+#
+# stack-type is the KEY IDEA: ledger decisions are scoped to a kind of codebase,
+# not a repo name. A tool can be right for one stack and wrong for another, and
+# the verdict transfers to the next repo of the same kind.
+#
+# This file is gitignored — the paths are yours. Copy from this example.
+/path/to/frontend-app   | stack:next-vercel
+/path/to/erp            | stack:erp-supabase
+/path/to/research       | stack:data-science
+/path/to/strategies     | stack:trading

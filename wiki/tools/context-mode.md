@@ -1,17 +1,18 @@
 ---
 verified_at: 2026-08-07
 status: upgraded
+scope: global
 ---
 
 # context-mode
 
-**upgraded** as of 2026-08-07.
+**upgraded** as of 2026-08-07, for **global**.
 
 ## Decisions
 
-| Date | Decision | Evidence | Reason |
-|---|---|---|---|
-| 2026-08-07 | **upgraded** | 1.0.107 → 1.0.169 | 62 versions behind; warned on every call. |
+| Date | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-07 | global | **upgraded** | 1.0.107 → 1.0.169 | 62 versions behind; warned on every call. |
 
 ## Re-evaluate when
 
