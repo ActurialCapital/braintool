@@ -73,9 +73,14 @@ def installed_skills():
         m = re.search(r"^description:\s*(.+)$", head, re.M)
         if m:
             desc = m.group(1).strip()
+        # A skill the model is forbidden to call can never show invocations.
+        # Reporting it as unused blames the tool for a rule.
+        user_only = bool(re.search(r"^disable-model-invocation:\s*true", head,
+                                   re.M | re.I))
         st = (sk / name).stat()
         out[name] = {
             "desc_bytes": len(desc),
+            "user_only": user_only,
             "installed": date.fromtimestamp(st.st_birthtime
                                             if hasattr(st, "st_birthtime")
                                             else st.st_mtime).isoformat(),
@@ -158,6 +163,8 @@ def main():
         status = "active"
         if hooked:
             status = "hook-activated"
+        elif meta.get("user_only"):
+            status = "user-invoked only (model cannot call it)"
         elif fresh:
             status = "new (grace period)"
         elif used == 0:

@@ -35,6 +35,13 @@ Rules:
 | 2026-08-07 | `setup-matt-pocock-skills` | **flagged** | installed 2026-05-02, **0 invocations**; upstream `mattpocock/skills` is candidate #3 (⭐208k) | A setup skill installed and never run, while its upstream sits in the sweep. Either adopt the source properly or drop the setup shim — holding both is the worst of each. |
 | 2026-08-07 | fuzzy dedupe | **rejected** | 3 substring matches on `mattpocock/skills`, only 1 real | Considered auto-dropping candidates whose names resemble installed tools. Any repo ending in `-skills` matched `find-skills`. Cheap dedupe would hide real candidates; exact-match plus a human eye is correct here. |
 
+## 2026-08-08 — Matt Pocock family review
+
+| Date | Tool | Decision | Evidence | Reason |
+|---|---|---|---|---|
+| 2026-08-08 | [[grill-me]] | **flagged** | installed 2026-05-02, **0 invocations** in 2,462 sessions | Installed via `~/.agents/skills/`. Real skill, plausible use (stress-test a plan), never once reached for. Keep or drop — but not "keep and never use". |
+| 2026-08-08 | [[matt-pocock-skills]] | **flagged** | 13 skills installed, **1 invocation total** (`diagnose`) | `grill-me`, `grill-with-docs`, `improve-codebase-architecture`, `to-prd`, `to-issues`, `triage`, `tdd`, `autobrowse`, `browser-trace`, `find-skills`, `zoom-out`, `setup-matt-pocock-skills`. A whole family adopted at once on 2026-05-02, exercised once in three months. The largest block of unused surface in the harness. |
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.
