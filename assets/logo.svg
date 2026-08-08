@@ -1,68 +1,67 @@
 <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="braintool">
-  <title>braintool — a second brain that prunes itself</title>
+  <title>braintool — a harness that measures itself and prunes what it cannot justify</title>
 
   <defs>
-    <linearGradient id="core" x1="60" y1="40" x2="180" y2="200" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ray" x1="120" y1="30" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a5b4fc"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="loop" x1="20" y1="70" x2="220" y2="175" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#818cf8"/>
       <stop offset="0.55" stop-color="#6366f1"/>
       <stop offset="1" stop-color="#4338ca"/>
     </linearGradient>
-    <linearGradient id="edge" x1="70" y1="60" x2="170" y2="180" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#a5b4fc"/>
-      <stop offset="1" stop-color="#6366f1"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#6366f1" stop-opacity="0.30"/>
+    <radialGradient id="core" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="0.55" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.42" stop-color="#6366f1" stop-opacity="0"/>
+      <stop offset="0.88" stop-color="#6366f1" stop-opacity="0.16"/>
       <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <circle cx="112" cy="118" r="96" fill="url(#glow)"/>
+  <circle cx="120" cy="120" r="112" fill="url(#halo)"/>
 
-  <!-- hemisphere: folds drawn as a graph, not as anatomy -->
-  <g stroke="url(#edge)" stroke-width="3.2" stroke-linecap="round" fill="none">
-    <path d="M112 36 C 74 36, 46 60, 44 96 C 42 124, 56 138, 58 156 C 60 178, 78 194, 104 194"/>
-    <path d="M112 36 C 112 62, 96 70, 78 74 C 62 78, 56 90, 60 104"/>
-    <path d="M60 104 C 78 100, 92 108, 96 124 C 100 142, 90 154, 76 158"/>
-    <path d="M104 194 C 104 172, 114 160, 130 156"/>
-    <path d="M44 96 C 62 92, 70 82, 72 66"/>
-  </g>
-
-  <!-- kept synapses -->
-  <g fill="url(#core)">
-    <circle cx="112" cy="36" r="8"/>
-    <circle cx="44" cy="96" r="7"/>
-    <circle cx="60" cy="104" r="6"/>
-    <circle cx="96" cy="124" r="7"/>
-    <circle cx="76" cy="158" r="6"/>
-    <circle cx="104" cy="194" r="8"/>
-    <circle cx="72" cy="66" r="5"/>
+  <!-- ── the burst: what the harness holds, measured from the centre ──── -->
+  <g fill="url(#ray)">
+    <g><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(36 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(72 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(108 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(180 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(216 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(252 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(288 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+    <g transform="rotate(324 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
   </g>
 
-  <!-- the ledger: the spine everything reports to -->
-  <rect x="126" y="82" width="76" height="76" rx="14" fill="url(#core)"/>
-  <g stroke="#e0e7ff" stroke-width="4" stroke-linecap="round">
-    <line x1="142" y1="104" x2="186" y2="104"/>
-    <line x1="142" y1="120" x2="186" y2="120"/>
-    <line x1="142" y1="136" x2="168" y2="136"/>
+  <!-- one ray pruned: same shape, ejected outward, fading as it goes -->
+  <g transform="rotate(144 120 120)">
+    <g transform="translate(0 -26) rotate(7 120 60)" fill="#f43f5e" fill-opacity="0.45">
+      <path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/>
+    </g>
   </g>
-  <g stroke="url(#edge)" stroke-width="3" stroke-linecap="round">
-    <line x1="96" y1="124" x2="126" y2="120"/>
-    <line x1="130" y1="156" x2="140" y2="158"/>
+  <g fill="#f43f5e">
+    <circle cx="176.4" cy="197.7" r="3.6" fill-opacity="0.34"/>
+    <circle cx="184.7" cy="209.0" r="2.4" fill-opacity="0.22"/>
+    <circle cx="192.3" cy="219.5" r="1.6" fill-opacity="0.14"/>
   </g>
 
-  <!-- pruned: dashed edges, hollow nodes, drifting away -->
-  <g stroke="#f43f5e" stroke-opacity="0.75" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 6" fill="none">
-    <path d="M186 92 C 204 78, 212 64, 210 50"/>
-    <path d="M194 150 C 212 158, 220 172, 218 186"/>
+  <!-- ── the core: one place every measurement resolves to ───────────── -->
+  <circle cx="120" cy="120" r="31" fill="url(#core)"/>
+  <circle cx="120" cy="120" r="31" stroke="#c7d2fe" stroke-opacity="0.45" stroke-width="1.5"/>
+  <ellipse cx="110" cy="108" rx="11" ry="8.5" transform="rotate(-32 110 108)" fill="#eef2ff" fill-opacity="0.42"/>
+
+  <!-- ── the loop: measure, decide, prune, measure again ──────────────── -->
+  <g stroke="url(#loop)" stroke-width="6.5" stroke-linecap="round" fill="none">
+    <path d="M24.2 85.1 A 102 102 0 0 1 215.8 85.1"/>
+    <path d="M215.8 154.9 A 102 102 0 0 1 24.2 154.9"/>
   </g>
-  <g fill="none" stroke="#f43f5e" stroke-opacity="0.85" stroke-width="2.8">
-    <circle cx="211" cy="44" r="7"/>
-    <circle cx="219" cy="192" r="6"/>
-  </g>
-  <g fill="#f43f5e" fill-opacity="0.35">
-    <circle cx="225" cy="66" r="3"/>
-    <circle cx="203" cy="30" r="2.4"/>
-    <circle cx="206" cy="172" r="2.4"/>
+  <g fill="url(#loop)">
+    <path d="M0 -11.5 L15.5 0 L0 11.5 Z" transform="translate(215.8 85.1) rotate(70)"/>
+    <path d="M0 -11.5 L15.5 0 L0 11.5 Z" transform="translate(24.2 154.9) rotate(250)"/>
   </g>
 </svg>

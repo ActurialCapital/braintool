@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="braintool" width="132" height="132">
+  <img src="assets/logo.svg" alt="braintool" width="148" height="148">
 </p>
 
 <h1 align="center">braintool</h1>
