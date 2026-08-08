@@ -20,3 +20,4 @@ repos.txt
 !repos.txt.example
 .leakpatterns
 !.leakpatterns.example
+wiki/local/*

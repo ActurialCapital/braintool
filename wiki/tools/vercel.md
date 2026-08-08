@@ -11,7 +11,7 @@ status: rescoped
 
 | Date | Decision | Evidence | Reason |
 |---|---|---|---|
-| 2026-08-07 | **rescoped** | 0 vercel.json / 0 package refs in <project> repos; <project> deploys to Cloud Run | Not removed — moved from user scope to the two projects that actually use it (`backoffice-web-mock`, `<other-project>-patient-app`). ~20 skills stopped loading in every unrelated session. |
+| 2026-08-07 | **rescoped** | 0 vercel.json / 0 package refs in <project> repos; <project> deploys to Cloud Run | Not removed — moved from user scope to the two projects that actually use it (see their stack pages). ~20 skills stopped loading in every unrelated session. |
 
 ## Re-evaluate when
 

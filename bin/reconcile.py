@@ -328,11 +328,74 @@ def main():
                 ""]
         if items:
             body += ["| Kind | Name |", "|---|---|"]
-            body += [f"| {k} | `{n}` |" for k, n in items]
+            for k, n in items:
+                # Link only when a page exists. A wikilink to nothing is a
+                # phantom node in the graph - 45 of them is how this vault
+                # started.
+                wiki = OUT.parent / "wiki"
+                has_page = ((wiki / "tools" / f"{n}.md").exists()
+                            or (wiki / "local" / f"{n}.md").exists())
+                body.append(f"| {k} | {'[[' + n + ']]' if has_page else '`' + n + '`'} |")
         else:
             body += ["_none — this repo uses only the global harness._"]
-        body += ["", STACK_MARK]
+        body += ["", "Back to [[MAP]].", "", STACK_MARK]
         page.write_text("\n".join(body) + tail)
+
+    # Local pages for everything installed that has no public page. Public
+    # pages come from the ledger (decisions); these come from disk (facts).
+    # Two folders, never the same name twice, so every [[link]] resolves and
+    # the graph is complete without publishing a private tool name.
+    LOCAL = OUT.parent / "wiki" / "local"
+    LOCAL.mkdir(parents=True, exist_ok=True)
+    pub = OUT.parent / "wiki" / "tools"
+    LOCAL_MARK = "<!-- generated above; your notes below survive -->"
+    for rw in rows:
+        nm = rw["name"]
+        if (pub / f"{nm}.md").exists() or "/" in nm:
+            continue
+        page = LOCAL / f"{nm}.md"
+        old = page.read_text() if page.exists() else ""
+        tail = old.split(LOCAL_MARK, 1)[1] if LOCAL_MARK in old else "\n"
+        measure = ("not measurable" if rw["observable"] == "none"
+                   else f"{rw['value']} ({rw['observable']})")
+        body = ["---", f"verified_at: {date.today().isoformat()}",
+                f"kind: {rw['kind']}", f"scope: {rw['scope']}",
+                f"activation: {rw['activation']}", "---", "",
+                f"# {nm}", "",
+                f"| | |", f"|---|---|",
+                f"| kind | {rw['kind']} |",
+                f"| scope | {rw['scope']} |",
+                f"| activation | {rw['activation']} |",
+                f"| measure | {measure} |",
+                f"| last used | {rw['last_used']} |",
+                f"| status | {rw['status']} |", "",
+                "_No ledger decision yet. Installed, observed, undecided._", "",
+                LOCAL_MARK]
+        page.write_text("\n".join(body) + tail)
+
+    # A single entry point for "which repo is which" in Obsidian. Local only:
+    # the list of repos is itself private.
+    if repos():
+        idx = ["---", f"verified_at: {date.today().isoformat()}", "---", "",
+               "# Repo map", "",
+               "Every repo this brain watches. Each page lists the tooling "
+               "installed *in that repo* — the surface the global harness "
+               "does not show.", "",
+               "| Repo | Project-level tools | Stack page |",
+               "|---|---:|---|"]
+        for repo in repos():
+            n = len(project_tooling(repo))
+            idx.append(f"| {repo.name} | {n} | [[{repo.name}]] |")
+        idx += ["", "## How scope works", "",
+                "- **Global** — `~/.claude`, shared by every repo. Rot here "
+                "costs context in every session.",
+                "- **Per repo** — `<repo>/.claude/` and `.mcp.json`. Invisible "
+                "from anywhere else.",
+                "",
+                "A tool useful everywhere belongs global. A tool useful to one "
+                "stack belongs in that repo. A tool useful nowhere belongs in "
+                "the ledger as a no.", ""]
+        (stacks / "MAP.md").write_text("\n".join(idx))
 
     OUT.mkdir(parents=True, exist_ok=True)
     payload = {

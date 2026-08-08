@@ -63,7 +63,10 @@ def main():
         print("leakcheck: no .leakpatterns file — nothing to check", file=sys.stderr)
         return 0
 
-    rx = re.compile("|".join(re.escape(p) for p in pats), re.I)
+    # Word boundaries: 'orchestra' must not match 'orchestration', or the
+    # guard fires on its own source and gets switched off.
+    rx = re.compile("|".join(rf"\b{re.escape(p)}\b" if p[0].isalnum()
+                             else re.escape(p) for p in pats), re.I)
     hits = []
     for f in staged_and_tracked():
         if f.name in (".leakpatterns", "leakcheck.py"):
