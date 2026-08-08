@@ -63,6 +63,15 @@ Rules:
 | 2026-08-08 | [[db-test-skills]] | stack:erp-supabase | **flagged** | `database-migrations`, `e2e-testing`: 0 invocations | Plausibly right for the ERP stack — but that repo already has project-level `postgres-expert` and `playwright-e2e`, so these may be duplicates at the wrong scope. |
 | 2026-08-08 | scope audit | global | **recorded** | 22 of 33 global skills are stack-agnostic; 11 are not | The rule is not "everything per-repo". Stack-agnostic tools belong global. The failure mode is a stack-specific tool at global scope: it taxes every session it cannot help. |
 
+## 2026-08-08 — rescope executed
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-08 | [[vercel-skills]] | stack:next-vercel | **rescoped** | 7 skills moved out of global into 2 repos | Now load only where a Vercel deploy exists. Completes the 2026-08-07 rescope, which moved the plugin and left the skills behind. |
+| 2026-08-08 | [[browser-skills]] | stack:react-app | **rescoped** | `autobrowse`, `browser-trace` → 4 React repos | Browser automation is only meaningful where there is a UI to drive. |
+| 2026-08-08 | [[db-test-skills]] | stack:data-pipeline | **rescoped** | `database-migrations`, `e2e-testing` → the migrations repo | Kept, not dropped — the migrations repo is where schema work happens. |
+| 2026-08-08 | global harness | global | **reduced** | 33 → **22** global skills; 11 moved to the repos that use them | Every one of the 11 had 0 invocations while loading into every session. The rule holds: stack-agnostic global, stack-specific per repo. |
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.
