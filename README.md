@@ -95,6 +95,19 @@ ledger.md     every adopt/reject/remove decision + evidence  ← the product
 4. **Facts expire.** Every page carries `verified_at`. Unverified is stale by default.
 5. **Ground truth beats the catalog.** The wiki is wrong the moment it disagrees with disk.
 
+## Wiring it into the agent
+
+A wiki the agent never reads is a notebook. `skills/tool-decisions/` is the door:
+it loads only when the task is about adding, removing, or evaluating tooling,
+and it makes the agent read `ledger.md` before forming an opinion.
+
+```bash
+ln -s "$PWD/skills/tool-decisions" ~/.claude/skills/tool-decisions
+```
+
+Deliberately a skill rather than a `CLAUDE.md` line: this matters ten times a
+year, not in every message, and `CLAUDE.md` is loaded into every session forever.
+
 ## Patterns
 
 Recurring lessons, each with occurrences and evidence:
