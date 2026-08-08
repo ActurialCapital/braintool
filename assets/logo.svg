@@ -1,44 +1,68 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="braintool logo">
-  <title>braintool</title>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="braintool">
+  <title>braintool — a second brain that prunes itself</title>
 
-  <!-- outer ring -->
-  <circle cx="100" cy="100" r="82" stroke="#6366f1" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="4 7"/>
+  <defs>
+    <linearGradient id="core" x1="60" y1="40" x2="180" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="0.55" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#4338ca"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="70" y1="60" x2="170" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a5b4fc"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
 
-  <!-- edges: every satellite reports to the centre -->
-  <g stroke="#6366f1" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round">
-    <line x1="100" y1="100" x2="100" y2="34"/>
-    <line x1="100" y1="100" x2="157" y2="67"/>
-    <line x1="100" y1="100" x2="157" y2="133"/>
-    <line x1="100" y1="100" x2="100" y2="166"/>
-    <line x1="100" y1="100" x2="43"  y2="133"/>
-    <line x1="100" y1="100" x2="43"  y2="67"/>
+  <circle cx="112" cy="118" r="96" fill="url(#glow)"/>
+
+  <!-- hemisphere: folds drawn as a graph, not as anatomy -->
+  <g stroke="url(#edge)" stroke-width="3.2" stroke-linecap="round" fill="none">
+    <path d="M112 36 C 74 36, 46 60, 44 96 C 42 124, 56 138, 58 156 C 60 178, 78 194, 104 194"/>
+    <path d="M112 36 C 112 62, 96 70, 78 74 C 62 78, 56 90, 60 104"/>
+    <path d="M60 104 C 78 100, 92 108, 96 124 C 100 142, 90 154, 76 158"/>
+    <path d="M104 194 C 104 172, 114 160, 130 156"/>
+    <path d="M44 96 C 62 92, 70 82, 72 66"/>
   </g>
 
-  <!-- edges between neighbours: the graph, not just a star -->
-  <g stroke="#818cf8" stroke-opacity="0.35" stroke-width="1.5" stroke-linecap="round">
-    <line x1="100" y1="34"  x2="157" y2="67"/>
-    <line x1="157" y1="133" x2="100" y2="166"/>
-    <line x1="43"  y1="133" x2="43"  y2="67"/>
+  <!-- kept synapses -->
+  <g fill="url(#core)">
+    <circle cx="112" cy="36" r="8"/>
+    <circle cx="44" cy="96" r="7"/>
+    <circle cx="60" cy="104" r="6"/>
+    <circle cx="96" cy="124" r="7"/>
+    <circle cx="76" cy="158" r="6"/>
+    <circle cx="104" cy="194" r="8"/>
+    <circle cx="72" cy="66" r="5"/>
   </g>
 
-  <!-- satellites: installed tools -->
-  <g fill="#a5b4fc">
-    <circle cx="100" cy="34"  r="9"/>
-    <circle cx="157" cy="67"  r="9"/>
-    <circle cx="157" cy="133" r="9"/>
-    <circle cx="43"  cy="133" r="9"/>
-    <circle cx="43"  cy="67"  r="9"/>
+  <!-- the ledger: the spine everything reports to -->
+  <rect x="126" y="82" width="76" height="76" rx="14" fill="url(#core)"/>
+  <g stroke="#e0e7ff" stroke-width="4" stroke-linecap="round">
+    <line x1="142" y1="104" x2="186" y2="104"/>
+    <line x1="142" y1="120" x2="186" y2="120"/>
+    <line x1="142" y1="136" x2="168" y2="136"/>
+  </g>
+  <g stroke="url(#edge)" stroke-width="3" stroke-linecap="round">
+    <line x1="96" y1="124" x2="126" y2="120"/>
+    <line x1="130" y1="156" x2="140" y2="158"/>
   </g>
 
-  <!-- one satellite retired: the no, which is the valuable record -->
-  <circle cx="100" cy="166" r="9" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-opacity="0.8"/>
-  <line x1="95" y1="161" x2="105" y2="171" stroke="#f43f5e" stroke-width="2.5" stroke-opacity="0.8" stroke-linecap="round"/>
-
-  <!-- the ledger at the centre -->
-  <circle cx="100" cy="100" r="21" fill="#4f46e5"/>
-  <g stroke="#e0e7ff" stroke-width="2.5" stroke-linecap="round">
-    <line x1="91" y1="94"  x2="109" y2="94"/>
-    <line x1="91" y1="100" x2="109" y2="100"/>
-    <line x1="91" y1="106" x2="103" y2="106"/>
+  <!-- pruned: dashed edges, hollow nodes, drifting away -->
+  <g stroke="#f43f5e" stroke-opacity="0.75" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 6" fill="none">
+    <path d="M186 92 C 204 78, 212 64, 210 50"/>
+    <path d="M194 150 C 212 158, 220 172, 218 186"/>
+  </g>
+  <g fill="none" stroke="#f43f5e" stroke-opacity="0.85" stroke-width="2.8">
+    <circle cx="211" cy="44" r="7"/>
+    <circle cx="219" cy="192" r="6"/>
+  </g>
+  <g fill="#f43f5e" fill-opacity="0.35">
+    <circle cx="225" cy="66" r="3"/>
+    <circle cx="203" cy="30" r="2.4"/>
+    <circle cx="206" cy="172" r="2.4"/>
   </g>
 </svg>

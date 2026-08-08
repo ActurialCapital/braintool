@@ -18,10 +18,41 @@
 </p>
 
 <p align="center">
-  <img alt="python" src="https://img.shields.io/badge/python-3.10%2B-4f46e5">
-  <img alt="dependencies" src="https://img.shields.io/badge/dependencies-none-6366f1">
-  <img alt="storage" src="https://img.shields.io/badge/storage-plain%20markdown-818cf8">
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-4f46e5?style=flat-square"></a>
+  <img alt="python" src="https://img.shields.io/badge/python-3.10%2B-4f46e5?style=flat-square&logo=python&logoColor=white">
+  <img alt="dependencies" src="https://img.shields.io/badge/dependencies-none-6366f1?style=flat-square">
+  <img alt="storage" src="https://img.shields.io/badge/storage-plain%20markdown-6366f1?style=flat-square&logo=markdown&logoColor=white">
+  <img alt="obsidian" src="https://img.shields.io/badge/vault-Obsidian%20ready-7c3aed?style=flat-square&logo=obsidian&logoColor=white">
+  <br>
+  <img alt="pattern" src="https://img.shields.io/badge/pattern-LLM%20Wiki-818cf8?style=flat-square">
+  <img alt="scope" src="https://img.shields.io/badge/decisions-scoped%20by%20stack-818cf8?style=flat-square">
+  <img alt="privacy" src="https://img.shields.io/badge/privacy-local%20by%20default-10b981?style=flat-square&logo=gnuprivacyguard&logoColor=white">
+  <img alt="PRs" src="https://img.shields.io/badge/PRs-welcome-10b981?style=flat-square">
 </p>
+
+---
+
+## A second brain, for your tooling
+
+Andrej Karpathy's [**LLM Wiki**](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+describes a personal knowledge base an LLM maintains for you: you drop raw
+material into a folder, the model compiles it into structured, interlinked
+markdown, and you browse the result. The agent is the librarian; you are the
+curator.
+
+**braintool applies that pattern to the harness itself** — your skills, plugins,
+MCP servers, hooks, and agent frameworks.
+
+The difference is where the raw material comes from. A reading wiki ingests
+articles you clip. This one ingests **your machine**: what is installed, what
+actually gets invoked, what still connects, and what your commit history says
+about whether any of it helped. A reading wiki's facts are stable — a paper says
+what it says forever. These facts **expire**: versions bump, repos get abandoned,
+CVEs land, a plugin breaks against a new release.
+
+So the loop is not *ingest → structure → browse*. It is **reconcile**: every run
+diffs what the wiki claims against what is actually on disk, and the disagreement
+is the finding.
 
 ---
 
@@ -383,6 +414,25 @@ runner has. Run hygiene locally — that is where the ground truth lives.
 Churn degrades to a non-conventional bucket and tells you little. Either adopt
 `feat:`/`fix:` prefixes, or replace `churn.py` with an outcome metric your history
 can support — revert rate, time-to-green, incident count.
+
+**How is this different from Karpathy's LLM Wiki?**
+Same pattern, different input and one extra loop. The LLM Wiki ingests material
+you clip; this ingests your machine. And because tooling facts expire, it adds
+reconciliation — the wiki is checked against disk on every run, and a claim that
+no longer matches reality is a finding rather than a page.
+
+---
+
+## Contributing
+
+Issues and PRs welcome. The bar for a new collector or metric is the same bar the
+project applies to tools: it has to earn its context. If it cannot say *how* it
+knows something — and admit when it cannot know — it does not go in.
+
+## License
+
+[MIT](LICENSE) — fork it, rename it, make it yours. Inspired by Andrej Karpathy's
+[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
 ---
 
