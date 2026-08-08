@@ -149,6 +149,20 @@ def main():
     findings = []
     rows = []
 
+    def row(kind, name, activation, observable, value, last_seen, status):
+        """One installed thing.
+
+        `observable` is the field that matters. It says HOW this tool's use can
+        be seen - or that it cannot be. A count of 0 under observable='none'
+        means "not measurable", not "unused". Conflating those two produced
+        three separate wrong findings before this field existed: hooks (rtk),
+        plugin-activated skills (caveman), and disable-model-invocation
+        skills (zoom-out) were all reported as dead while running fine.
+        """
+        rows.append({"kind": kind, "name": name, "activation": activation,
+                     "observable": observable, "value": value,
+                     "last_used": last_seen or "-", "status": status})
+
     for name, meta in skills.items():
         used = counts["skill"][name]
         seen = last.get(f"skill:{name}", "")
@@ -160,43 +174,54 @@ def main():
         hooked = (any(name in h["command"] for h in hooks(cfg))
                   or name in plugin_names)
         fresh = meta["installed"] >= grace
-        status = "active"
         if hooked:
-            status = "hook-activated"
+            row("skill", name, "hook", "none", None, seen,
+                "active (hook-activated; invocations cannot show this)")
         elif meta.get("user_only"):
-            status = "user-invoked only (model cannot call it)"
+            # The model is forbidden from calling it, so a transcript count of
+            # zero is a rule, not a verdict. Nothing here can measure whether
+            # the human uses it - say so instead of implying disuse.
+            row("skill", name, "user-only", "none", None, seen,
+                "user-invoked only — NOT MEASURABLE from transcripts")
+            findings.append(f"skill `{name}` is user-invoked only; this tool "
+                            f"cannot tell used from unused. Judge by hand.")
         elif fresh:
-            status = "new (grace period)"
+            row("skill", name, "model", "invocations", used, seen,
+                "new (grace period)")
         elif used == 0:
-            status = "NEVER INVOKED"
+            row("skill", name, "model", "invocations", 0, seen, "NEVER INVOKED")
             findings.append(f"skill `{name}` never invoked "
                             f"(installed {meta['installed']})")
         elif seen and seen < cutoff:
-            status = f"stale (last {seen})"
+            row("skill", name, "model", "invocations", used, seen,
+                f"stale (last {seen})")
             findings.append(f"skill `{name}` unused since {seen}")
-        rows.append(("skill", name, used, seen or "-", status))
+        else:
+            row("skill", name, "model", "invocations", used, seen, "active")
 
     for name, meta in servers.items():
         used = counts["mcp"][f"mcp__{name}"]
         seen = last.get(f"mcp:mcp__{name}", "")
-        status = "active"
         if not meta["approved"]:
-            status = "NOT APPROVED — tools unavailable"
+            row("mcp", name, "on-call", "calls", used, seen,
+                "NOT APPROVED — tools unavailable")
             findings.append(f"MCP `{name}` declared but not approved "
                             f"({meta['scope']}) — its tools are dead")
         elif used == 0:
-            status = "NEVER CALLED"
+            row("mcp", name, "on-call", "calls", 0, seen, "NEVER CALLED")
             findings.append(f"MCP `{name}` never called ({meta['scope']})")
-        rows.append(("mcp", name, used, seen or "-", status))
+        else:
+            row("mcp", name, "on-call", "calls", used, seen, "active")
 
     agents_dir = CL / "agents"
     for f in (sorted(os.listdir(agents_dir)) if agents_dir.exists() else []):
         name = f[:-3] if f.endswith(".md") else f
         used = counts["agent"][name]
-        status = "active" if used else "NEVER SPAWNED"
+        row("agent", name, "spawned", "spawns", used,
+            last.get(f"agent:{name}", ""),
+            "active" if used else "NEVER SPAWNED")
         if not used:
             findings.append(f"agent `{name}` never spawned")
-        rows.append(("agent", name, used, last.get(f"agent:{name}", "-"), status))
 
     # Hooks are installed tools too. Omitting them left rtk - which fires on
     # every Bash call - absent from the inventory, so the sweep re-proposed it
@@ -212,7 +237,7 @@ def main():
         if not h["reachable"]:
             findings.append(f"hook on {h['event']} points at a missing binary: "
                             f"{h['command'][:60]}")
-        rows.append(("hook", name, 0, "-", status))
+        row("hook", name, "hook", "reachability", h["reachable"], "", status)
 
     # Orphan check: the failure mode that bit us 4x. Artifacts from a plugin
     # that is no longer enabled still load into every session.
@@ -222,16 +247,15 @@ def main():
         if p.exists() and any(p.iterdir()):
             n = sum(1 for _ in p.rglob("*.md"))
             if n:
-                rows.append(("artifact", f"~/.claude/{d}", n, "-",
-                             f"{n} md files loading every session"))
+                row("artifact", f"~/.claude/{d}", "always-on", "file-count", n,
+                    "", f"{n} md files loading every session")
 
     OUT.mkdir(parents=True, exist_ok=True)
     payload = {
         "generated": datetime.now().isoformat(timespec="seconds"),
         "sessions_scanned": sessions,
         "enabled_plugins": sorted(enabled),
-        "rows": [dict(zip(("kind", "name", "invocations", "last_used", "status"), r))
-                 for r in rows],
+        "rows": rows,
         "findings": findings,
     }
     (OUT / "inventory.json").write_text(json.dumps(payload, indent=2))
@@ -242,11 +266,16 @@ def main():
     if findings:
         md += ["## Findings", ""] + [f"- {f}" for f in findings] + [""]
     md += ["## What is installed", "",
-           "| Kind | Name | Invocations | Last used | Status |",
-           "|---|---|---:|---|---|"]
-    for kind, name, used, seen, status in sorted(rows, key=lambda r: (r[0], -r[2])):
-        link = f"[[{name}]]" if kind in ("skill", "mcp") else f"`{name}`"
-        md.append(f"| {kind} | {link} | {used} | {seen} | {status} |")
+           "`observable: none` means this tool's use cannot be seen from here. "
+           "A blank measure is not evidence of disuse.", "",
+           "| Kind | Name | Activation | Measure | Last used | Status |",
+           "|---|---|---|---:|---|---|"]
+    for r in sorted(rows, key=lambda x: (x["kind"], str(x["value"]))):
+        link = (f"[[{r['name']}]]" if r["kind"] in ("skill", "mcp")
+                else f"`{r['name']}`")
+        measure = "not measurable" if r["observable"] == "none" else f"{r['value']}"
+        md.append(f"| {r['kind']} | {link} | {r['activation']} | {measure} | "
+                  f"{r['last_used']} | {r['status']} |")
     md += ["", "---", "", "See [[ledger]] for adopt/remove decisions."]
     (OUT / "inventory.md").write_text("\n".join(md) + "\n")
 

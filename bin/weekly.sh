@@ -1,46 +1,44 @@
 #!/usr/bin/env bash
-# The weekly loop, run by hand. Everything here is local by necessity:
-# reconcile.py reads ~/.claude, which no CI runner has.
+# Hygiene: what is installed, what it costs, whether the vault is sound.
+# Local by necessity - reconcile.py reads ~/.claude, which no CI runner has.
 #
-#   ./bin/weekly.sh              reconcile + sweep (cached stars)
-#   ./bin/weekly.sh --refresh    also re-pull stars from GitHub
+#   ./bin/weekly.sh          the weekly pass
 #
-# Output lands in inventory/ (gitignored where it maps this machine).
+# Discovery (sweeping starred repos) is a SEPARATE command on purpose:
+#   ./bin/discover.sh        when you are actually shopping
+#
+# Scoreboard so far: hygiene found four dead frameworks, a silently unapproved
+# MCP hiding 32 tools, and ~17.7M of orphans. Discovery produced 110 candidates
+# and zero adoptions. They do not deserve the same cadence.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-REFRESH="${1:-}"
-
-echo "══ 1/5  reconcile — installed vs. invoked ══"
+echo "══ 1/4  reconcile — installed vs. observable ══"
 python3 bin/reconcile.py
 
 echo
-echo "══ 2/5  churn — fix:feat, the outcome metric ══"
-# Edit this list to match the repos you actually ship.
+echo "══ 2/4  churn — the outcome metric, recorded ══"
 REPOS=(~/GitHub/JJB/HawaiiFarming/aloha-app ~/GitHub/JJB/HawaiiFarming/aloha-data-migrations)
 EXISTING=()
 for r in "${REPOS[@]}"; do [ -d "$r/.git" ] && EXISTING+=("$r"); done
 if [ ${#EXISTING[@]} -gt 0 ]; then
-  python3 bin/churn.py "${EXISTING[@]}" > inventory/churn.md
+  python3 bin/churn.py "${EXISTING[@]}" --record > inventory/churn.md
   grep -E '^\*\*fix:feat' inventory/churn.md || true
+  echo "  recorded to inventory/churn.jsonl ($(wc -l < inventory/churn.jsonl | tr -d ' ') points)"
 else
   echo "  (no repos configured — edit REPOS in bin/weekly.sh)"
 fi
 
 echo
-echo "══ 3/5  sweep — stars to candidates ══"
-python3 bin/sweep.py ${REFRESH}
-
-echo
-echo "══ 4/5  pages — ledger to wiki ══"
+echo "══ 3/4  pages — ledger to wiki ══"
 python3 bin/pages.py
 
 echo
-echo "══ 5/5  lint — vault health ══"
+echo "══ 4/4  lint — vault health ══"
 python3 bin/lint.py || true
 
 echo
 echo "── next ──"
-echo "  read   inventory/candidates.md"
-echo "  gate   python3 bin/gate.py <repo-path> --stack <stack>"
-echo "  record every decision in ledger.md, including the noes"
+echo "  history  python3 bin/churn.py --history"
+echo "  shop     ./bin/discover.sh"
+echo "  record   every decision in ledger.md, including the noes"

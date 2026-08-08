@@ -10,3 +10,4 @@ inventory/inventory.md
 inventory/churn.md
 wiki/stacks/*
 !wiki/stacks/EXAMPLE.md
+inventory/stars.json

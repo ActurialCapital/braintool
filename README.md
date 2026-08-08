@@ -41,7 +41,12 @@ Nothing auto-commits. The merge/close decision is the feedback.
 
 Exact, already on disk:
 
-- invocations + last-used, per skill / MCP server / subagent (from `~/.claude/projects/*.jsonl`)
+- **activation mode and whether use is observable at all** — the field that matters.
+  `observable: none` means this tool's use cannot be seen from here, which is
+  *not* evidence of disuse. Omitting it produced three wrong findings: rtk (hook),
+  caveman (plugin-activated), zoom-out (`disable-model-invocation`) were each
+  reported dead while running fine.
+- invocations + last-used, where that is the observable (from `~/.claude/projects/*.jsonl`)
 - context cost — description bytes × sessions loaded
 - MCP health — connects / fails / declared-but-unapproved
 - **churn** — `fix:feat` ratio per repo and per scope, the honest outcome metric
@@ -60,11 +65,16 @@ classifies by activation mode for exactly this reason.
 ## Usage
 
 ```bash
-python3 bin/reconcile.py                      # inventory + findings
-python3 bin/churn.py ~/code/*                 # fix:feat per repo and scope
-python3 bin/sweep.py --refresh                # starred repos -> candidates
-python3 bin/gate.py <repo> --stack <stack>    # security + fit, before adopting
+./bin/weekly.sh                    # hygiene: reconcile, churn (recorded), pages, lint
+./bin/discover.sh --refresh        # discovery: stars -> candidates. Only when shopping.
+python3 bin/churn.py --history     # the outcome series, with decisions overlaid
+python3 bin/gate.py <path> --stack <stack>   # security + fit, before adopting
 ```
+
+Hygiene and discovery are separate on purpose. Hygiene found four dead
+frameworks, a silently unapproved MCP hiding 32 tools, and ~17.7M of orphans.
+Discovery produced 110 candidates and zero adoptions. They do not deserve the
+same cadence.
 
 **Local output is not published.** `inventory/inventory.*`, `inventory/churn.md`
 and `wiki/stacks/*` are gitignored — an inventory is a map of one machine and a
