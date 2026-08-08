@@ -4,10 +4,19 @@ __pycache__/
 .obsidian/
 .env
 
-# Local machine + private-repo output. Never publish.
-inventory/inventory.json
-inventory/inventory.md
-inventory/churn.md
+# ── Local data is PRIVATE BY DEFAULT ──────────────────────────────────────
+# This repo maps a machine and the repos on it. A blocklist made every new
+# output file public by default and leaked twice: inventory/inventory.md, then
+# churn.jsonl (which carries private repo and module names).
+# Allowlist instead. Anything new under these paths stays local unless it is
+# explicitly un-ignored below.
+inventory/*
 wiki/stacks/*
+repos.txt
+
+# Publishable exceptions, each one a deliberate decision:
+!inventory/.gitkeep
 !wiki/stacks/EXAMPLE.md
-inventory/stars.json
+!repos.txt.example
+.leakpatterns
+!.leakpatterns.example

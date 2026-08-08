@@ -1,0 +1,5 @@
+# One repo path per line. Churn is measured across these.
+# This file is gitignored (repos.txt) — the paths are yours, not the project's.
+# Copy to repos.txt and edit.
+/path/to/your/repo
+/path/to/another/repo

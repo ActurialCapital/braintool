@@ -1,0 +1,6 @@
+# Copy to .leakpatterns (gitignored) and list your private names:
+# repo names, org names, client names, absolute home paths.
+# leakcheck.py blocks any commit where a tracked/staged file matches one.
+my-private-repo
+my-client-name
+/Users/me

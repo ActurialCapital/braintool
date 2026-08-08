@@ -18,15 +18,22 @@ python3 bin/reconcile.py
 
 echo
 echo "══ 2/4  churn — the outcome metric, recorded ══"
-REPOS=(~/GitHub/JJB/HawaiiFarming/aloha-app ~/GitHub/JJB/HawaiiFarming/aloha-data-migrations)
+# Repo paths live in repos.txt (gitignored). Hardcoding them here published
+# private paths in a public repo - twice. See repos.txt.example.
 EXISTING=()
-for r in "${REPOS[@]}"; do [ -d "$r/.git" ] && EXISTING+=("$r"); done
+if [ -f repos.txt ]; then
+  while IFS= read -r r; do
+    [ -z "$r" ] && continue
+    case "$r" in \#*) continue ;; esac
+    [ -d "$r/.git" ] && EXISTING+=("$r")
+  done < repos.txt
+fi
 if [ ${#EXISTING[@]} -gt 0 ]; then
   python3 bin/churn.py "${EXISTING[@]}" --record > inventory/churn.md
   grep -E '^\*\*fix:feat' inventory/churn.md || true
   echo "  recorded to inventory/churn.jsonl ($(wc -l < inventory/churn.jsonl | tr -d ' ') points)"
 else
-  echo "  (no repos configured — edit REPOS in bin/weekly.sh)"
+  echo "  (no repos configured — cp repos.txt.example repos.txt and edit)"
 fi
 
 echo
