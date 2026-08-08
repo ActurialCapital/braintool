@@ -96,6 +96,55 @@ def settings():
         return {}
 
 
+def repos():
+    """Repos to inventory, from repos.txt (gitignored - the paths are private)."""
+    f = OUT.parent / "repos.txt"
+    if not f.exists():
+        return []
+    out = []
+    for line in f.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and (Path(line) / ".git").is_dir():
+            out.append(Path(line))
+    return out
+
+
+def project_tooling(repo: Path):
+    """Tooling installed INSIDE a repo, which the global harness never shows.
+
+    A machine-wide inventory reports a clean harness while each repo quietly
+    accumulates its own skills, agents and MCP servers. For a single stack that
+    is harmless; across frontend + data-science + trading it hides most of the
+    surface.
+    """
+    found = []
+    cl = repo / ".claude"
+    for sub, kind in (("skills", "skill"), ("agents", "agent"),
+                      ("commands", "command")):
+        d = cl / sub
+        if d.is_dir():
+            for item in sorted(os.listdir(d)):
+                if item.startswith("."):
+                    continue
+                found.append((kind, item.removesuffix(".md")))
+    mcpf = repo / ".mcp.json"
+    if mcpf.exists():
+        try:
+            for n in json.loads(mcpf.read_text()).get("mcpServers", {}):
+                found.append(("mcp", n))
+        except ValueError:
+            pass
+    for sf in ("settings.json", "settings.local.json"):
+        p = cl / sf
+        if p.exists():
+            try:
+                for n in json.loads(p.read_text()).get("enabledPlugins", {}):
+                    found.append(("plugin", n.split("@")[0]))
+            except ValueError:
+                pass
+    return found
+
+
 def mcp_config():
     """Declared MCP servers: user scope + every project .mcp.json we know of."""
     servers = {}
@@ -149,7 +198,8 @@ def main():
     findings = []
     rows = []
 
-    def row(kind, name, activation, observable, value, last_seen, status):
+    def row(kind, name, activation, observable, value, last_seen, status,
+            scope="global"):
         """One installed thing.
 
         `observable` is the field that matters. It says HOW this tool's use can
@@ -159,9 +209,10 @@ def main():
         plugin-activated skills (caveman), and disable-model-invocation
         skills (zoom-out) were all reported as dead while running fine.
         """
-        rows.append({"kind": kind, "name": name, "activation": activation,
-                     "observable": observable, "value": value,
-                     "last_used": last_seen or "-", "status": status})
+        rows.append({"kind": kind, "name": name, "scope": scope,
+                     "activation": activation, "observable": observable,
+                     "value": value, "last_used": last_seen or "-",
+                     "status": status})
 
     for name, meta in skills.items():
         used = counts["skill"][name]
@@ -250,6 +301,39 @@ def main():
                 row("artifact", f"~/.claude/{d}", "always-on", "file-count", n,
                     "", f"{n} md files loading every session")
 
+    # ── per-repo tooling ────────────────────────────────────────────────
+    stacks = OUT.parent / "wiki" / "stacks"
+    STACK_MARK = "<!-- generated above; your notes below survive -->"
+    for repo in repos():
+        items = project_tooling(repo)
+        for kind, name in items:
+            # Usage counters are machine-wide; a project skill named the same
+            # as a global one cannot be told apart. Say so rather than guess.
+            row(kind, name, "project", "none", None, "",
+                f"installed in {repo.name} — usage not attributable per repo",
+                scope=repo.name)
+        if items:
+            findings.append(f"{repo.name}: {len(items)} project-level tools "
+                            f"the global harness does not show")
+        stacks.mkdir(parents=True, exist_ok=True)
+        page = stacks / f"{repo.name}.md"
+        old = page.read_text() if page.exists() else ""
+        tail = old.split(STACK_MARK, 1)[1] if STACK_MARK in old else (
+            "\n## What it actually is\n\n_Describe the stack._\n\n"
+            "## Fit filter\n\n_The standing noes. Anything matching these is "
+            "rejected without a scan._\n")
+        body = [f"---", f"verified_at: {date.today().isoformat()}",
+                f"repo: {repo}", f"---", "", f"# Stack: {repo.name}", "",
+                f"**{len(items)} project-level tool(s)** installed in this repo:",
+                ""]
+        if items:
+            body += ["| Kind | Name |", "|---|---|"]
+            body += [f"| {k} | `{n}` |" for k, n in items]
+        else:
+            body += ["_none — this repo uses only the global harness._"]
+        body += ["", STACK_MARK]
+        page.write_text("\n".join(body) + tail)
+
     OUT.mkdir(parents=True, exist_ok=True)
     payload = {
         "generated": datetime.now().isoformat(timespec="seconds"),
@@ -268,14 +352,15 @@ def main():
     md += ["## What is installed", "",
            "`observable: none` means this tool's use cannot be seen from here. "
            "A blank measure is not evidence of disuse.", "",
-           "| Kind | Name | Activation | Measure | Last used | Status |",
-           "|---|---|---|---:|---|---|"]
-    for r in sorted(rows, key=lambda x: (x["kind"], str(x["value"]))):
+           "| Scope | Kind | Name | Activation | Measure | Last used | Status |",
+           "|---|---|---|---|---:|---|---|"]
+    for r in sorted(rows, key=lambda x: (x["scope"] != "global", x["scope"],
+                                         x["kind"], str(x["value"]))):
         link = (f"[[{r['name']}]]" if r["kind"] in ("skill", "mcp")
                 else f"`{r['name']}`")
         measure = "not measurable" if r["observable"] == "none" else f"{r['value']}"
-        md.append(f"| {r['kind']} | {link} | {r['activation']} | {measure} | "
-                  f"{r['last_used']} | {r['status']} |")
+        md.append(f"| {r['scope']} | {r['kind']} | {link} | {r['activation']} | "
+                  f"{measure} | {r['last_used']} | {r['status']} |")
     md += ["", "---", "", "See [[ledger]] for adopt/remove decisions."]
     (OUT / "inventory.md").write_text("\n".join(md) + "\n")
 
