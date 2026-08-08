@@ -54,6 +54,15 @@ Rules:
 |---|---|---|---|---|---|
 | 2026-08-08 | [[gsd]] | stack:greenfield | **open** | 0 invocations in a mature codebase | The 2026-08-07 removal was recorded as global, which was wrong. gsd was never exercised **here** — a mature ERP with settled patterns. A greenfield project needing roadmap-and-phase planning is the case it was built for, and this ledger has no evidence either way. Not a rejection; an untested scope. |
 
+## 2026-08-08 — global skills that are stack-specific
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-08 | [[vercel-skills]] | stack:next-vercel | **flagged** | 6 skills, **0 invocations** each, global | `deploy-to-vercel`, `vercel-cli-with-tokens`, `vercel-composition-patterns`, `vercel-optimize`, `vercel-react-best-practices`, `vercel-react-native-skills`, `vercel-react-view-transitions`. The 2026-08-07 rescope moved the *plugin* to project scope and left the *skills* global — a half-done fix reported as done. They load in every unrelated session. |
+| 2026-08-08 | [[browser-skills]] | stack:browser-automation | **flagged** | `autobrowse`, `browser-trace`: 0 invocations since 2026-05-03 | Stack-specific, global. Belong in a repo that does browser work, or nowhere. |
+| 2026-08-08 | [[db-test-skills]] | stack:erp-supabase | **flagged** | `database-migrations`, `e2e-testing`: 0 invocations | Plausibly right for the ERP stack — but that repo already has project-level `postgres-expert` and `playwright-e2e`, so these may be duplicates at the wrong scope. |
+| 2026-08-08 | scope audit | global | **recorded** | 22 of 33 global skills are stack-agnostic; 11 are not | The rule is not "everything per-repo". Stack-agnostic tools belong global. The failure mode is a stack-specific tool at global scope: it taxes every session it cannot help. |
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.
