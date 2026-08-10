@@ -4,6 +4,10 @@ __pycache__/
 .obsidian/
 .env
 
+# Obsidian scratch — created by clicking around the vault, never content
+*.canvas
+*.base
+
 # ── Local data is PRIVATE BY DEFAULT ──────────────────────────────────────
 # This repo maps a machine and the repos on it. A blocklist made every new
 # output file public by default and leaked twice: inventory/inventory.md, then
