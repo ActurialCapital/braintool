@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="braintool" width="148" height="148">
+  <img src="assets/logo.png" alt="braintool" width="100%">
 </p>
-
-<h1 align="center">braintool</h1>
 
 <p align="center">
   <strong>An agent-maintained wiki of your AI tooling — kept honest against what is actually installed and actually used.</strong>

@@ -1,67 +1,29 @@
-<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="braintool">
-  <title>braintool — a harness that measures itself and prunes what it cannot justify</title>
+<svg width="1280" height="440" viewBox="0 0 1280 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="braintool">
+  <title>braintool</title>
 
   <defs>
-    <linearGradient id="ray" x1="120" y1="30" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#a5b4fc"/>
-      <stop offset="1" stop-color="#4f46e5"/>
-    </linearGradient>
-    <linearGradient id="loop" x1="20" y1="70" x2="220" y2="175" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#818cf8"/>
-      <stop offset="0.55" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#4338ca"/>
-    </linearGradient>
-    <radialGradient id="core" cx="0.38" cy="0.32" r="0.75">
-      <stop offset="0" stop-color="#818cf8"/>
-      <stop offset="0.55" stop-color="#4f46e5"/>
-      <stop offset="1" stop-color="#312e81"/>
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="0" stop-color="#17171a"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
     </radialGradient>
-    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0.42" stop-color="#6366f1" stop-opacity="0"/>
-      <stop offset="0.88" stop-color="#6366f1" stop-opacity="0.16"/>
-      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="bloom" x="-60%" y="-160%" width="220%" height="420%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="46"/>
+    </filter>
   </defs>
 
-  <circle cx="120" cy="120" r="112" fill="url(#halo)"/>
+  <rect width="1280" height="440" fill="url(#vignette)"/>
 
-  <!-- ── the burst: what the harness holds, measured from the centre ──── -->
-  <g fill="url(#ray)">
-    <g><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(36 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(72 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(108 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(180 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(216 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(252 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(288 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
-    <g transform="rotate(324 120 120)"><path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/></g>
+  <!-- the glow: one soft mass, cool on the left, violet on the right -->
+  <g filter="url(#bloom)" opacity="0.92">
+    <ellipse cx="768" cy="188" rx="124" ry="94" fill="#8b5cf6"/>
+    <ellipse cx="694" cy="244" rx="112" ry="88" fill="#5b62d6"/>
+    <ellipse cx="566" cy="234" rx="126" ry="96" fill="#5fb2c9"/>
+    <ellipse cx="608" cy="206" rx="104" ry="78" fill="#cfe9f4"/>
+    <ellipse cx="626" cy="212" rx="66" ry="50" fill="#eaf6fb"/>
   </g>
 
-  <!-- one ray pruned: same shape, ejected outward, fading as it goes -->
-  <g transform="rotate(144 120 120)">
-    <g transform="translate(0 -26) rotate(7 120 60)" fill="#f43f5e" fill-opacity="0.45">
-      <path d="M120 38 L126.5 96 L120 106 L113.5 96 Z"/>
-    </g>
-  </g>
-  <g fill="#f43f5e">
-    <circle cx="176.4" cy="197.7" r="3.6" fill-opacity="0.34"/>
-    <circle cx="184.7" cy="209.0" r="2.4" fill-opacity="0.22"/>
-    <circle cx="192.3" cy="219.5" r="1.6" fill-opacity="0.14"/>
-  </g>
-
-  <!-- ── the core: one place every measurement resolves to ───────────── -->
-  <circle cx="120" cy="120" r="31" fill="url(#core)"/>
-  <circle cx="120" cy="120" r="31" stroke="#c7d2fe" stroke-opacity="0.45" stroke-width="1.5"/>
-  <ellipse cx="110" cy="108" rx="11" ry="8.5" transform="rotate(-32 110 108)" fill="#eef2ff" fill-opacity="0.42"/>
-
-  <!-- ── the loop: measure, decide, prune, measure again ──────────────── -->
-  <g stroke="url(#loop)" stroke-width="6.5" stroke-linecap="round" fill="none">
-    <path d="M24.2 85.1 A 102 102 0 0 1 215.8 85.1"/>
-    <path d="M215.8 154.9 A 102 102 0 0 1 24.2 154.9"/>
-  </g>
-  <g fill="url(#loop)">
-    <path d="M0 -11.5 L15.5 0 L0 11.5 Z" transform="translate(215.8 85.1) rotate(70)"/>
-    <path d="M0 -11.5 L15.5 0 L0 11.5 Z" transform="translate(24.2 154.9) rotate(250)"/>
+  <g fill="#ffffff" font-family="Avenir Next, Avenir, Poppins, Nunito Sans, Segoe UI, Helvetica Neue, Arial, sans-serif" font-weight="500" font-size="86" letter-spacing="-1.5">
+    <text x="524" y="200">brain</text>
+    <text x="524" y="292">tool</text>
   </g>
 </svg>
