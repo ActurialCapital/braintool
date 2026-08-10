@@ -15,15 +15,14 @@
 
   <!-- the glow: one soft mass, cool on the left, violet on the right -->
   <g filter="url(#bloom)" opacity="0.92">
-    <ellipse cx="768" cy="188" rx="124" ry="94" fill="#8b5cf6"/>
-    <ellipse cx="694" cy="244" rx="112" ry="88" fill="#5b62d6"/>
-    <ellipse cx="566" cy="234" rx="126" ry="96" fill="#5fb2c9"/>
-    <ellipse cx="608" cy="206" rx="104" ry="78" fill="#cfe9f4"/>
-    <ellipse cx="626" cy="212" rx="66" ry="50" fill="#eaf6fb"/>
+    <ellipse cx="898" cy="188" rx="124" ry="94" fill="#8b5cf6"/>
+    <ellipse cx="824" cy="244" rx="112" ry="88" fill="#5b62d6"/>
+    <ellipse cx="696" cy="234" rx="126" ry="96" fill="#5fb2c9"/>
+    <ellipse cx="738" cy="206" rx="104" ry="78" fill="#cfe9f4"/>
+    <ellipse cx="756" cy="212" rx="66" ry="50" fill="#eaf6fb"/>
   </g>
 
-  <g fill="#ffffff" font-family="Avenir Next, Avenir, Poppins, Nunito Sans, Segoe UI, Helvetica Neue, Arial, sans-serif" font-weight="500" font-size="86" letter-spacing="-1.5">
-    <text x="524" y="200">brain</text>
-    <text x="524" y="292">tool</text>
+  <g fill="#ffffff" font-family="JetBrains Mono, SF Mono, Menlo, Monaco, Consolas, DejaVu Sans Mono, monospace" font-weight="500" font-size="76" letter-spacing="-1">
+    <text x="620" y="242">braintool</text>
   </g>
 </svg>
