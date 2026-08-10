@@ -225,6 +225,8 @@ never staleness.
 | `python3 bin/reconcile.py` | Inventory installed tools, global and per repo |
 | `python3 bin/churn.py <repo>… [--record]` | fix:feat per repo and scope |
 | `python3 bin/churn.py --history` | The outcome series with decisions overlaid |
+| `python3 bin/demand.py [--days N]` | Shortlist the sessions worth reading |
+| `python3 bin/session_log.py` | SessionEnd hook: print what just happened, log it |
 | `python3 bin/gate.py <path> --stack <type>` | Security scan + fit check |
 | `python3 bin/pages.py [--force]` | Regenerate wiki pages from the ledger |
 | `python3 bin/lint.py [--all]` | Broken wikilinks, orphans, stale pages |
@@ -248,6 +250,8 @@ braintool/
 │   ├── discover.sh        star sweep
 │   ├── reconcile.py       installed vs. observable
 │   ├── churn.py           fix:feat, recorded over time
+│   ├── demand.py          shortlist sessions worth reading
+│   ├── session_log.py     end-of-session facts, printed and logged
 │   ├── sweep.py           stars → candidates
 │   ├── gate.py            security + fit
 │   ├── pages.py           ledger → wiki pages
@@ -334,7 +338,22 @@ before forming an opinion.
 
 ```bash
 ln -s "$PWD/skills/tool-decisions" ~/.claude/skills/tool-decisions
+ln -s "$PWD/skills/tool-review"    ~/.claude/skills/tool-review
 ```
+
+The second one is the other direction. `tool-decisions` answers a question you
+asked about one tool; `tool-review` is the weekly pass where **nobody asked**.
+
+It works because counting stops where the interesting part starts. A counter sees
+twenty turns; it cannot see that they were one problem, that the first answer
+missed, or that you gave up and did it by hand. So `demand.py` only *shortlists*
+the sessions worth reading — ranked by rework, loops, failures, and whether any
+skill fired — and the agent reads them and says what was actually happening.
+Deterministic funnel, probabilistic verdict, and every proposal carries the
+sessions it came from and how sure it is.
+
+The improvements you never make are the ones you never knew were available — and
+the first thing it surfaces is usually a tool you already own.
 
 Deliberately a skill rather than a line in your always-loaded instructions: this
 matters a handful of times a year, and always-loaded context is charged in every

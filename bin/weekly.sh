@@ -13,11 +13,11 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "══ 1/4  reconcile — installed vs. observable ══"
+echo "══ 1/5  reconcile — installed vs. observable ══"
 python3 bin/reconcile.py
 
 echo
-echo "══ 2/4  churn — the outcome metric, recorded ══"
+echo "══ 2/5  churn — the outcome metric, recorded ══"
 # Repo paths live in repos.txt (gitignored). Hardcoding them here published
 # private paths in a public repo - twice. See repos.txt.example.
 EXISTING=()
@@ -37,15 +37,22 @@ else
 fi
 
 echo
-echo "══ 3/4  pages — ledger to wiki ══"
+echo "══ 3/5  pages — ledger to wiki ══"
 python3 bin/pages.py
 
 echo
-echo "══ 4/4  lint — vault health ══"
+echo "══ 4/5  lint — vault health ══"
 python3 bin/lint.py || true
 
 echo
+echo "══ 5/5  demand — what you still do by hand ══"
+# Rolling 30-day window, run weekly: overlapping windows keep the numbers
+# steady instead of swinging on one quiet week.
+python3 bin/demand.py --days 30
+
+echo
 echo "── next ──"
+echo "  review   ask your agent for the weekly tooling review (skills/tool-review)"
 echo "  history  python3 bin/churn.py --history"
 echo "  shop     ./bin/discover.sh"
 echo "  record   every decision in ledger.md, including the noes"
