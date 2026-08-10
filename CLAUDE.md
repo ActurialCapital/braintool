@@ -19,36 +19,17 @@ destroys the product.
 
 ## `scope` is a stack type, never a repo name
 
-`stack:next-vercel`, `stack:erp-supabase`, `stack:greenfield`. Two reasons, both
-load-bearing:
+`stack:next-vercel`, `stack:erp-supabase`, `stack:greenfield`. The transferable
+question is about the *kind* of codebase. Same tool, different stack, opposite
+verdict is normal — write two rows, both true. Repo paths live in `repos.txt`.
 
-- Repo names are private. This is a public repo and they must never enter a
-  tracked file.
-- The transferable question is about the *kind* of codebase. Same tool, different
-  stack, opposite verdict is normal — write two rows, both true.
-
-Repo paths live in `repos.txt`, which is gitignored. `repos.txt.example` is the
-published shape.
-
-## Private by default
+## Privacy is mechanical
 
 `.gitignore` is an **allowlist** for `inventory/`, `wiki/stacks/`, `wiki/local/`
-and `repos.txt` — anything new under those paths stays local unless explicitly
-un-ignored. This is not stylistic: publishing those paths leaked private module
-names twice, and the second leak forced deleting and recreating the repo.
-
-The repo **root is a blocklist**, so files dropped at top level do get tracked.
-Check before adding anything there.
-
-## Run `bin/leakcheck.py` before every commit
-
-It reads `.leakpatterns`, which is **gitignored** — a fresh clone has no guard at
-all until the user writes their own from `.leakpatterns.example`. Never assume it
-is protecting you; run it and read the output.
-
-Patterns are word-bounded on purpose. An earlier auto-globbing version flagged
-the org's own name and matched a short project name inside an ordinary English
-word.
+and `repos.txt`; the root is a blocklist, so check before adding a file there.
+Run `bin/leakcheck.py` before every commit — `.leakpatterns` is itself gitignored,
+so a fresh clone has no guard until the user writes one. Rationale for both lives
+next to the code, in `.gitignore` and `bin/leakcheck.py`.
 
 ## `BLOCKED` is not a soft `PASS`
 

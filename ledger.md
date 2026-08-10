@@ -12,8 +12,8 @@ Rules:
 - **`scope` is a stack TYPE, not a repo name.** A tool can be right for one kind
   of codebase and wrong for another: `gsd` suits greenfield planning and not a
   mature ERP; `vercel` is essential to a Next deploy and dead weight elsewhere.
-  A global "removed" erases that. Repo names stay out of this file — they are
-  private, and the transferable question is about the *kind* of codebase.
+  A global "removed" erases that, and the transferable question is about the
+  *kind* of codebase, not one repo.
   Same tool, different scope, different verdict = two rows, both true.
 - `evidence` must be a number or a path, not an opinion.
 - A removal is worth more than an adoption. Write the removals down first.

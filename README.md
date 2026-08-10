@@ -161,9 +161,9 @@ stack:trading       → strategy and backtest work
 
 The same tool can carry two rows with opposite verdicts. **Both are true.**
 
-Scope is a stack type rather than a repo name for two reasons: repo names are
-usually private, and *"is this good for a Next.js app on Vercel"* transfers to the
-next repo of that kind, while *"is this good for my-project-42"* does not.
+Scope is a stack type rather than a repo name because *"is this good for a
+Next.js app on Vercel"* transfers to the next repo of that kind, while *"is this
+good for my-project-42"* does not.
 
 This also decides **where a tool gets installed**:
 
