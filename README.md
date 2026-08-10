@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="braintool" width="100%">
+  <img src="assets/braintool-banner.png" alt="braintool" width="100%">
 </p>
 
 <p align="center">
