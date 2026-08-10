@@ -30,52 +30,42 @@
 
 ---
 
-## A second brain, for your tooling
+## What this is
 
-Andrej Karpathy's [**LLM Wiki**](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
-describes a personal knowledge base an LLM maintains for you: you drop raw
-material into a folder, the model compiles it into structured, interlinked
-markdown, and you browse the result. The agent is the librarian; you are the
-curator.
+**A second brain for the tooling your coding agent runs on** — skills, plugins,
+MCP servers, hooks, subagents, workflows, whole harnesses.
 
-**braintool applies that pattern to the harness itself** — your skills, plugins,
-MCP servers, hooks, and agent frameworks.
+You install those from catalogs. Nothing tracks what happens next. braintool
+reads your machine and writes it down: what is installed, what actually gets
+invoked, what silently broke, and what your commit history says about whether
+any of it helped.
 
-The difference is where the raw material comes from. A reading wiki ingests
-articles you clip. This one ingests **your machine**: what is installed, what
-actually gets invoked, what still connects, and what your commit history says
-about whether any of it helped. A reading wiki's facts are stable — a paper says
-what it says forever. These facts **expire**: versions bump, repos get abandoned,
-CVEs land, a plugin breaks against a new release.
+> Catalogs answer *what exists*. This answers
+> **what do I actually have, and is any of it helping?**
 
-So the loop is not *ingest → structure → browse*. It is **reconcile**: every run
-diffs what the wiki claims against what is actually on disk, and the disagreement
-is the finding.
+## Why it needs to exist
 
----
-
-## The problem
-
-An agent harness grows by accretion. A skill here, a plugin there, an MCP server
-for a project finished last quarter. Each one costs context in **every session**,
-adds surface area, and creates a cleanup nobody schedules.
-
-Nothing tells you when a tool stops earning its place. Uninstalling a plugin
+A harness grows by accretion — a skill here, a plugin there, an MCP server for a
+project that shipped last quarter. Each one costs context in **every session**,
+and nothing tells you when one stops earning its place. Uninstalling a plugin
 disables it but leaves behind whatever it wrote into your config directory, and
 those leftovers keep loading forever. The bill is paid silently, so it never
 comes due.
 
-Meanwhile the public catalogs — awesome-lists, plugin directories, template
-registries — all answer the same question: *what exists?* None of them can
-answer the two that matter:
+A first run on one machine found four installed frameworks with **zero
+invocations between them**, an MCP server silently unapproved for weeks — hiding
+32 working tools — and ~17MB of orphaned files from plugins removed months
+earlier. None of that is about what exists. It is about what you installed and
+forgot.
 
-> **What do I actually have, and is any of it helping?**
+And these facts **expire**: versions bump, repos get abandoned, a plugin breaks
+against a new release. So the loop is not *ingest → structure → browse*. It is
+**reconcile** — every run diffs what the wiki claims against what is on disk, and
+the disagreement is the finding.
 
-A first run on a single machine surfaced four installed frameworks with **zero
-invocations between them**, one MCP server silently unapproved for weeks — hiding
-32 working tools — and ~17MB of orphaned artifacts from plugins removed months
-earlier. No catalog could have found any of it, because none of it is about what
-exists. It is about what you installed and forgot.
+<sub>The pattern is Andrej Karpathy's
+[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f),
+pointed at your harness instead of your reading list.</sub>
 
 ---
 
@@ -189,17 +179,10 @@ means *invocation count*:
 | user-only | the agent is *forbidden* from calling it; zero is a rule, not a verdict |
 | project-scoped | usage counters are machine-wide, so they cannot be attributed per repo |
 
-So every row carries `activation` and `observable`:
-
-```json
-{"name": "some-hook",  "activation": "hook",      "observable": "reachability", "value": true}
-{"name": "some-skill", "activation": "user-only", "observable": "none",         "value": null}
-{"name": "other",      "activation": "model",     "observable": "invocations",  "value": 0}
-```
-
-`observable: none` means **this cannot be seen from here** — which is not evidence
-of disuse. The same rule governs the security gate, where a scanner that examined
-nothing returns `BLOCKED`, never `PASS`.
+So every inventory row records *how* the tool activates and *what* can be
+observed about it — and `observable: none` means **this cannot be seen from
+here**, which is not evidence of disuse. Same rule at the security gate: a
+scanner that examined nothing returns `BLOCKED`, never `PASS`.
 
 ### 4. Churn is the outcome metric
 
@@ -369,20 +352,6 @@ Recurring lessons, each with occurrences and evidence:
 - [[shannon-method]] — sorting a famous research method into the parts that
   transfer to an agent and the parts that invert. Worked example of rejecting
   most of something good.
-
----
-
-## Design principles
-
-1. **Newer is not better.** Fit fails first, and fit is free to check.
-2. **Removals are worth more than additions.** Anyone can list what is available.
-3. **Look at everything, adopt almost nothing, write down every no.**
-4. **Facts expire.** Every page carries `verified_at`. Unverified is stale.
-5. **Ground truth beats the catalog.** The wiki is wrong the moment it disagrees
-   with disk.
-6. **Never report a verdict you did not earn.** *Not measured* is an answer.
-7. **Generated is facts; hand-written is judgement.** Never let a script write the
-   second kind.
 
 ---
 
