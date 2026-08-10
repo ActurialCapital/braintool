@@ -366,6 +366,9 @@ Recurring lessons, each with occurrences and evidence:
 - [[plugin-removed-artifacts-remain]] — uninstalling disables a plugin; it does
   not remove what the plugin wrote into your config directory.
 - [[acceptance-test]] — the standing test of whether this system works at all.
+- [[shannon-method]] — sorting a famous research method into the parts that
+  transfer to an agent and the parts that invert. Worked example of rejecting
+  most of something good.
 
 ---
 

@@ -72,6 +72,13 @@ Rules:
 | 2026-08-08 | [[db-test-skills]] | stack:data-pipeline | **rescoped** | `database-migrations`, `e2e-testing` → the migrations repo | Kept, not dropped — the migrations repo is where schema work happens. |
 | 2026-08-08 | global harness | global | **reduced** | 33 → **22** global skills; 11 moved to the repos that use them | Every one of the 11 had 0 invocations while loading into every session. The rule holds: stack-agnostic global, stack-specific per repo. |
 
+## 2026-08-09 — research methods reviewed, not installed
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-09 | [[karpathy-guidelines]] | global | **open** | 4 sections; 3 already covered by an installed always-on rule set | Only §3 *Surgical Changes* is new — "every changed line traces to the request", don't improve adjacent code. §2 and §4 restate rules already loaded every turn. §1 ("if unclear, stop and ask") **contradicts** the standing rule to act on a sensible default rather than stall. Adopting the block would buy one idea, three duplicates and one conflict. Candidate action: lift §3 into global rules, install nothing. |
+| 2026-08-09 | shannon-method | global | **recorded** | 9 habits transfer, 6 invert | Kept as prose in `wiki/patterns/shannon-method.md`, not a skill — zero context cost, promoted only if reached for by hand. Two habits are *actively harmful* to an agent: "three ideas in parallel" produces unreviewable scattered diffs, and "discovery matters, write-up is an afterthought" produces silent work. Both are downstream of Shannon being a principal with no reviewer. |
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.
