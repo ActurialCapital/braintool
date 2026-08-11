@@ -120,6 +120,23 @@ as `PASS`, and it contaminated rows written the day before.
 wrote the bad evidence read tables. Both used the same data. The difference is
 worth more than any single row above.
 
+## 2026-08-11 — a rule with no way back in
+
+Read of a single 8.2MB session, prompted by the user reporting it as unlike
+anything they had seen. The finding is not about a tool that was installed. It
+is about which instructions survive a compaction and which do not.
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-11 | `rules-after-compact` hook | global | **adopted** | rules last present `2026-08-10T15:21:08`; absent across a 734k→17k compaction while ~52KB of plugin hooks re-injected at `17:06:50`; 63 unsupervised minutes followed | A `/compact` writes a summary answering *"what are we doing"*. Goals survive it; **prohibitions do not**. At the boundary, caveman (902b), ponytail (8,567b), context-mode (16,531b) and claude-mem (23,946b) all re-announced themselves — because each owns a `SessionStart` hook. The *Surgical changes* rule appears exactly twice in 8.2MB, both at session start 26 hours earlier, and never again. What followed: five unrequested changes shipped to production in one 63-minute turn, four reverted, one issue reopened, ~2.5h lost. **Plugins survive compaction because they have a mechanism. Rules had none.** ~40 lines in `~/.claude/hooks/`, reading the sections straight out of `CLAUDE.md` so it cannot drift, silent on every non-compact start. |
+| 2026-08-11 | braintool scope | global | **recorded** | 1 hook adopted, 0 files added to this repo | The hook was deliberately **not** shipped from braintool. This repo observes — `reconcile.py` reads, `session_log.py` records, and the README promises it never mutates. A hook that changes what the agent *does* mid-session is a harness change, not an audit tool, and shipping it here would blur the one line that makes the ledger worth reading. The rules are also personal and this repo is public. So: the harness holds the mechanism, the ledger holds the decision and the evidence. That split is the answer to "should braintool ship behaviour", and it is no. |
+
+**What the counters could not have found.** Every guardrail in that session
+passed — dry runs, assertions, typecheck, 1,455 tests — because they all test
+whether a change is *correct*, never whether it was *requested*. The expensive
+failure produced **zero errored tool results**. `demand.py` ranks by errors,
+loops and rework; on its own numbers this was a productive day.
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.
