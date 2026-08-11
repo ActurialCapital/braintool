@@ -137,6 +137,23 @@ whether a change is *correct*, never whether it was *requested*. The expensive
 failure produced **zero errored tool results**. `demand.py` ranks by errors,
 loops and rework; on its own numbers this was a productive day.
 
+## 2026-08-11 — hooks, the surface nobody was counting
+
+Asked what braintool actually looks at, the answer turned out to be "nine
+surfaces properly and hooks barely" — on the same day hooks were shown to be the
+mechanism that decides what survives a compaction.
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-11 | reconcile hooks | global | **fixed** | 3 hooks inventoried on a machine running **16**; one plugin script at **7,324 firings** unseen; this repo's own hook reported `MISSING BINARY` while firing 17 times | Four separate false verdicts, all the same shape as the `RE_MCP` zero found this morning. (1) The first token of the command was read as the hook, so `python3 …/session_log.py` resolved to `python3` and every interpreter-launched hook read as broken. (2) Only `settings.json` was read, while plugins declare hooks in three other shapes — `hooks/hooks.json`, `plugin/hooks/hooks.json`, and inside `plugin.json`. (3) A path built at run time through shell variables was called MISSING rather than unknown. (4) Hooks carried `observable: reachability` — does the file exist — while every firing sat in the transcripts uncounted. Hooks now report **firings**, and the two cases that genuinely cannot be measured say so instead of printing 0. |
+| 2026-08-11 | braintool scope | global | **recorded** | 10 surfaces named in the README, 1 of them previously unmeasured | Scope written down for the first time: skills, **hooks**, MCP servers, subagents, plugins, project tooling, settings, usage, behaviour, outcomes. Each activates differently and rots differently, so each is read separately — and the reason to name them is that the one nobody had enumerated is the one that was broken. Hooks fire unconditionally in every session, so a dead one is pure tax and a live one changes behaviour invisibly. That makes them the surface most worth counting and the easiest to miss. |
+
+**Still not measurable, and now labelled as such.** A hook that runs a binary
+(`rtk hook claude`) leaves no script name in the transcript, so it reads *not
+measurable*, never 0. A hook resolving its own path at run time reads *declared*.
+Both are the same rule this ledger keeps relearning: report the unknown as
+unknown, or the next reader will spend it as evidence.
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.

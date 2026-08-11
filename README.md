@@ -8,6 +8,7 @@
 
 <p align="center">
   <a href="#quick-start">Quick start</a> ·
+  <a href="#scope--the-ten-surfaces">Scope</a> ·
   <a href="#core-ideas">Core ideas</a> ·
   <a href="#commands">Commands</a> ·
   <a href="#privacy">Privacy</a> ·
@@ -90,6 +91,44 @@ pointed at your harness instead of your reading list.</sub>
 Plain markdown in a git repo. No database, no service, no dependencies beyond
 Python 3 and `git`. Readable in any editor, browsable as an
 [Obsidian](https://obsidian.md) vault, diffable in review.
+
+---
+
+## Scope — the ten surfaces
+
+A harness is not one thing. Each surface below activates differently, is
+observed differently, and rots differently, so each is read separately.
+
+| # | Surface | Read from | Measured by |
+|---|---|---|---|
+| 1 | **Skills** | `~/.claude/skills/*/SKILL.md` | invocations, install date, whether the model is even allowed to call it |
+| 2 | **Hooks** | `settings.json` **and** every plugin's own manifest | firings, per script |
+| 3 | **MCP servers** | `~/.claude.json`, user and project scope | calls, and whether the server was ever *approved* |
+| 4 | **Subagents** | `~/.claude/agents/` | spawns |
+| 5 | **Plugins** | `~/.claude/plugins/` | what they installed, and what they left behind |
+| 6 | **Project tooling** | `<repo>/.claude/`, `<repo>/.mcp.json` | the surface the global harness never shows |
+| 7 | **Settings** | `~/.claude/settings.json` | what is configured versus what is claimed |
+| 8 | **Usage** | `~/.claude/projects/**/*.jsonl` | every invocation, call, spawn and firing |
+| 9 | **Behaviour** | the same transcripts | loops, rework, failures — which sessions repay reading |
+| 10 | **Outcomes** | `git log` per repo | fix:feat, over time |
+
+**Hooks deserve their own note**, because they are the surface most likely to
+matter and the easiest to miss. They fire unconditionally on every matching
+event, in every session, whether or not anything calls them — so a dead hook is
+pure tax and a live one can change behaviour invisibly. They are also declared in
+four different places: your `settings.json`, and at least three shapes of plugin
+manifest. Reading only the first found 3 hooks on a machine running 16, while a
+single plugin's script fired **7,324** times unseen.
+
+Two things follow, and both are load-bearing:
+
+- **A hook that runs a binary cannot be counted.** The transcript records script
+  filenames, so `rtk hook claude` leaves no name to match. That reads as *not
+  measurable*, never as zero.
+- **A hook whose path is built at run time cannot be checked.** Some resolve
+  their own location through shell variables. That reads as *declared*, never as
+  missing — calling it broken was a verdict on a hook that had fired thousands of
+  times.
 
 ---
 

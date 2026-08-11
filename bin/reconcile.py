@@ -9,7 +9,7 @@ Emits inventory/inventory.json (machine) and inventory/inventory.md (Obsidian).
 Usage:
     python3 bin/reconcile.py [--since-days 90]
 """
-import argparse, json, os, re, subprocess, sys
+import argparse, json, os, re, shutil, subprocess, sys
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -28,11 +28,17 @@ RE_SKILL = re.compile(r'"skill"\s*:\s*"([a-zA-Z0-9_:.-]+)"')
 RE_MCP = re.compile(r'"name"\s*:\s*"(mcp__[a-zA-Z0-9_.-]+)"')
 RE_AGENT = re.compile(r'"subagent_type"\s*:\s*"([a-zA-Z0-9_-]+)"')
 RE_DAY = re.compile(r'"timestamp"\s*:\s*"(\d{4}-\d{2}-\d{2})')
+# Hook firings appear as the script name inside hook_success / hook records.
+# Matched on lines already known to mention a hook, so a stray .py in prose
+# cannot be counted as one.
+RE_HOOK = re.compile(r'([A-Za-z0-9_.-]+\.(?:mjs|js|cjs|py|sh|ts))')
+RE_SCRIPT = re.compile(r'[^\s"\']+\.(?:mjs|js|cjs|py|sh|ts)\b')
 
 
 def scan_usage():
     """Count invocations and last-used day per skill / mcp server / subagent."""
-    counts = {"skill": Counter(), "mcp": Counter(), "agent": Counter()}
+    counts = {"skill": Counter(), "mcp": Counter(), "agent": Counter(),
+              "hook": Counter()}
     last = defaultdict(str)
     sessions = 0
     for f in (CL / "projects").rglob("*.jsonl"):
@@ -54,6 +60,14 @@ def scan_usage():
                     for n in RE_AGENT.findall(line):
                         counts["agent"][n] += 1
                         last[f"agent:{n}"] = max(last[f"agent:{n}"], day)
+                    # Hooks were carried as observable:"reachability" - does the
+                    # file exist - while every firing was sitting right here. One
+                    # plugin's stop hook fired 136 times in a single session and
+                    # the inventory could not see one of them.
+                    if '"hook' in line:
+                        for n in RE_HOOK.findall(line):
+                            counts["hook"][n] += 1
+                            last[f"hook:{n}"] = max(last[f"hook:{n}"], day)
         except OSError:
             continue
     return counts, last, sessions
@@ -178,15 +192,87 @@ def mcp_config():
     return servers
 
 
-def hooks(cfg):
+def hook_target(command: str, root: str = "") -> str:
+    """The script a hook actually runs, not the interpreter that launches it.
+
+    Three shapes, all real, all previously mishandled:
+      python3 /path/session_log.py            -> read the interpreter, called it missing
+      node "${CLAUDE_PLUGIN_ROOT}/x/y.mjs"    -> unexpanded variable, called it missing
+      command -v node && node "…/z.js" || …   -> picked ">/dev/null", named the hook "null"
+    A script path is the only thing worth finding, so look for one directly.
+    """
+    cmd = command.replace("${CLAUDE_PLUGIN_ROOT}", root) if root else command
+    m = RE_SCRIPT.search(cmd)
+    if m:
+        return m.group(0).strip('"\'')
+    parts = [p.strip('"') for p in cmd.split() if p.strip('"')]
+    return parts[0] if parts else ""
+
+
+def reachable(command: str, root: str = ""):
+    """True / False / None, where None means 'cannot be determined from here'.
+
+    Some hooks build their path from shell variables at run time - claude-mem
+    resolves its through `$_E`, three levels of indirection deep. Calling that
+    MISSING BINARY was a verdict on a hook that had fired 7,324 times. An
+    unresolvable path is an unknown, and unknowns say so.
+    """
+    t = hook_target(command, root)
+    if not t:
+        return False
+    if "$" in t or "{" in t:
+        return None
+    # A bare name is on PATH or it is not; a path either exists or it does not.
+    return os.path.exists(t) if "/" in t else bool(shutil.which(t))
+
+
+def plugin_hooks():
+    """Hooks declared by PLUGINS, which settings.json never mentions.
+
+    The gap that made this worth fixing: reading settings.json alone reported 3
+    hooks while 5 plugin hooks fired ~150 times in a single session. Hooks are
+    the highest-leverage surface in the harness - they run unconditionally, in
+    every session - and they were the least visible.
+    """
     out = []
+    root = CL / "plugins" / "marketplaces"
+    if not root.exists():
+        return out
+    # Three shapes in the wild, and missing one hides a hook that runs in every
+    # session: claude-mem declares under plugin/hooks/, caveman inside its
+    # plugin.json, the rest at hooks/hooks.json. The .codex- and .cursor-
+    # variants describe other harnesses and are deliberately skipped.
+    files = (list(root.glob("*/hooks/hooks.json"))
+             + list(root.glob("*/plugin/hooks/hooks.json"))
+             + list(root.glob("*/.claude-plugin/plugin.json")))
+    for f in sorted(files):
+        try:
+            cfg = json.loads(f.read_text())
+        except (OSError, ValueError):
+            continue
+        if "hooks" not in cfg:
+            continue
+        plugin = f.relative_to(root).parts[0]
+        out += [dict(h, plugin=plugin) for h in hooks(cfg, str(f.parent.parent))]
+    return out
+
+
+def hooks(cfg, root: str = ""):
+    """One row per (event, script). A plugin declaring nine matchers for the
+    same script is one hook, not nine."""
+    out, seen = [], set()
     for ev, arr in cfg.get("hooks", {}).items():
+        if not isinstance(arr, list):
+            continue
         for m in arr:
             for h in m.get("hooks", []):
                 c = h.get("command", "")
-                binary = c.strip('"').split()[0].strip('"') if c else ""
-                out.append({"event": ev, "command": c,
-                            "reachable": bool(binary) and os.path.exists(binary)})
+                key = (ev, hook_target(c, root))
+                if not c or key in seen:
+                    continue
+                seen.add(key)
+                out.append({"event": ev, "command": c, "plugin": "",
+                            "root": root, "reachable": reachable(c, root)})
     return out
 
 
@@ -285,18 +371,47 @@ def main():
     # Hooks are installed tools too. Omitting them left rtk - which fires on
     # every Bash call - absent from the inventory, so the sweep re-proposed it
     # as a fresh discovery. Anything that runs is a row.
-    hk = hooks(cfg)
-    for h in hk:
-        binary = h["command"].strip('"').split()[0].strip('"')
-        name = os.path.basename(binary).split(".")[0] or binary
+    # One row per SCRIPT, not per event. Firings are counted by filename, so a
+    # script wired to five events was printing the same 7,324 on five rows as
+    # though each event had fired that many times.
+    by_script = {}
+    for h in hooks(cfg) + plugin_hooks():
+        base = os.path.basename(hook_target(h["command"], h.get("root", "")))
+        cur = by_script.setdefault(base, dict(h, events=[]))
+        if h["event"] not in cur["events"]:
+            cur["events"].append(h["event"])
+    for h in by_script.values():
+        target = hook_target(h["command"], h.get("root", ""))
+        base = os.path.basename(target)
+        name = base.split(".")[0] or target
+        scope = f"plugin:{h['plugin']}" if h["plugin"] else "global"
+        h["event"] = ", ".join(h["events"])
+        # Firings are only countable when the hook runs a SCRIPT - the transcript
+        # records the filename. A hook that shells out to a binary leaves no name
+        # to match, and reporting 0 for it would be the MCP false-zero all over
+        # again: rtk fires on every Bash call and would have read "0 firings".
+        countable = bool(RE_SCRIPT.search(base))
+        fired = counts["hook"].get(base, 0) if countable else None
+        seen = last.get(f"hook:{base}", "") if countable else ""
         # last_used is a DATE column. The hook event belongs in status - putting
         # it in last_used made 'SessionStart' sort as a future date.
-        status = (f"active ({h['event']} hook)" if h["reachable"]
-                  else f"MISSING BINARY ({h['event']})")
-        if not h["reachable"]:
+        if h["reachable"] is False:
+            status = f"MISSING BINARY ({h['event']})"
             findings.append(f"hook on {h['event']} points at a missing binary: "
                             f"{h['command'][:60]}")
-        row("hook", name, "hook", "reachability", h["reachable"], "", status)
+        elif h["reachable"] is None and not fired:
+            # Unresolvable path AND never seen firing: nothing is known here.
+            status = f"declared ({h['event']} hook; path not resolvable)"
+        elif not countable:
+            status = f"active ({h['event']} hook; firings not countable)"
+        elif fired:
+            status = f"active ({h['event']} hook, {fired} firings)"
+        else:
+            # Reachable but never seen firing. Not the same as unused: a hook on
+            # a rare event is doing its job by staying quiet.
+            status = f"installed ({h['event']} hook, no firing observed)"
+        row("hook", name, scope, "firings" if countable else "none",
+            fired, seen, status)
 
     # Orphan check: the failure mode that bit us 4x. Artifacts from a plugin
     # that is no longer enabled still load into every session.
