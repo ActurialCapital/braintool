@@ -100,6 +100,26 @@ graded itself accordingly: 3 proposals, 1 accepted outright, 2 rewritten.
 | 2026-08-10 | [[claude-mem]] | global | **recorded** | 951 of 2,396 sessions covered (~40%); 8,126 prompts, 6,444 summaries, 32,114 observations in a plain SQLite file | Read as **optional enrichment, never the store of record.** Coverage is the disqualifier: a 60% hole would hide findings without saying so. Trust splits three ways — `user_prompts` is verbatim and better than any regex, `session_summaries` point at sessions worth opening, `observations` are another model's judgement and are not evidence. The dependency stays soft: stdlib `sqlite3` reads the file whether or not the plugin runs, so this row never blocks removing it. |
 | 2026-08-10 | braintool `SessionEnd` hook | global | **adopted** | covers 2,396 of 2,396 sessions vs 951; 0 model calls | `bin/session_log.py` prints loops, rework, failures and which skills fired as a session closes, and appends the same to `inventory/sessions.jsonl`. Chosen over reusing an existing capture because everything shown is countable — no model call, so it costs nothing and covers everything. The line that earns it is `skills: none fired`, which is the awareness gap made visible at the only moment anyone cares. First measurement from it: **2,306 of 2,391 sessions (96%) invoked no skill at all.** |
 
+## 2026-08-11 — the instrument was wrong
+
+The first weekly review was run properly for the first time — 15 sessions read
+in full, by an agent with no memory of writing any of this. Its most useful
+finding is about the measuring tool, not the tooling: **a zero the scanner never
+computed reads exactly like a measured one.** Same class as `BLOCKED` shipping
+as `PASS`, and it contaminated rows written the day before.
+
+| Date | Tool | Scope | Decision | Evidence | Reason |
+|---|---|---|---|---|---|
+| 2026-08-11 | reconcile RE_MCP | global | **fixed** | `[a-zA-Z0-9_]` excluded `-`; `ag-mcp` read 0 on **11 real calls**, context-mode invisible on **3,539** | Every MCP server with a hyphen in its name matched nothing and was reported `NEVER CALLED`. One character. The damage is not the bug, it is that the output was indistinguishable from a real measurement — so a false zero was written into this ledger as evidence and into the open questions as a premise. |
+| 2026-08-11 | [[colab-mcp]] | stack:data-science | **superseded** | supersedes 2026-08-10: its evidence was never computed | The **decision stands** — the project is gone, which is the reason that carries it. The *evidence* was false: `colab-mcp` carries a hyphen, so "0 calls in 2,396 sessions" was a number the scanner could not produce. Recorded rather than edited, because a ledger that quietly repairs itself teaches nothing. [[framework-mcp]]'s zero was real; its name has no hyphen. |
+| 2026-08-11 | [[ag-mcp]] | stack:erp-supabase | **open** | 11 calls, 5 sessions, last 2026-08-07 — not 0 | The standing open question asked whether it was "not being used, or not helping", on a zero that never existed. It *is* used, thinly. With `ag-grid` at 5.0 fix:feat and grid views recurring in the rework table, the question is now answerable and worth asking again — but 11 calls is too thin to judge either way. Re-ask after the counter has run a full week. |
+| 2026-08-11 | braintool `SessionEnd` hook | global | **fixed** | 7 rows for 2 sessions; one session logged 5 times | The hook fires on clear and on resume, and the log appended unconditionally. Adopted yesterday as the review's ground truth, wrong within a day. Now one row per session, and the existing file compacted 10 → 4. Every ratio computed from it before today was weighted by how often a session got interrupted. |
+| 2026-08-11 | [[framework-mcp]] | stack:erp-supabase | **open** | still declared in the terminated repo's own `.mcp.json`; unapproved, so its tools are dead | The `~/.claude.json` entries are gone, but the repo still sits on disk carrying its own declaration. Textbook [[plugin-removed-artifacts-remain]]: removing the config does not remove what was written elsewhere. Harmless while unapproved. Closes when the directory goes. |
+
+**Method note.** The review that found all of this read sessions; the review that
+wrote the bad evidence read tables. Both used the same data. The difference is
+worth more than any single row above.
+
 ## Open questions
 
 - **Restore 5 superpowers skills standalone?** `brainstorming`, `writing-plans`, `subagent-driven-development`, `systematic-debugging`, `finishing-a-development-branch` carried 138 of the 143 invocations. The repo clone was the problem, not the skills.

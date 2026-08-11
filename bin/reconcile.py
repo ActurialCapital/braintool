@@ -21,7 +21,11 @@ OUT = Path(__file__).resolve().parent.parent / "inventory"
 # ponytail: regex scan over 1GB of transcripts beats json.loads per line by ~20x.
 # Upgrade to a real parser only if a field we need stops being greppable.
 RE_SKILL = re.compile(r'"skill"\s*:\s*"([a-zA-Z0-9_:.-]+)"')
-RE_MCP = re.compile(r'"name"\s*:\s*"(mcp__[a-zA-Z0-9_]+)"')
+# The class MUST carry "-". Without it every hyphenated server name matched
+# nothing, so ag-mcp reported NEVER CALLED on 11 real calls and context-mode was
+# invisible on 3,539. A zero the scanner never computed reads exactly like a
+# measured one - the same failure as BLOCKED shipping as PASS.
+RE_MCP = re.compile(r'"name"\s*:\s*"(mcp__[a-zA-Z0-9_.-]+)"')
 RE_AGENT = re.compile(r'"subagent_type"\s*:\s*"([a-zA-Z0-9_-]+)"')
 RE_DAY = re.compile(r'"timestamp"\s*:\s*"(\d{4}-\d{2}-\d{2})')
 

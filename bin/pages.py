@@ -36,6 +36,11 @@ def ledger_rows():
         if not m:
             continue
         name = (m.group(1) or m.group(2)).strip()
+        # A ledger cell holding a path is prose, not a tool. Taking it literally
+        # tried to write wiki/tools/bin/reconcile.py.md - one "/" away from
+        # writing outside the vault entirely.
+        if "/" in name or name.startswith("."):
+            continue
         rows.setdefault(name, []).append((d, scope, decision, evidence, reason))
     return rows
 

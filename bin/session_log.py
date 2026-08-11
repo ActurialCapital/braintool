@@ -112,10 +112,23 @@ def main():
     title = f"braintool · {rec['project']} · {s['turns']} turns"
     print("\n" + render(title, rows))
 
+    # One row per session, not per hook firing. SessionEnd fires on clear and on
+    # resume too, so appending blindly wrote 7 rows for 2 sessions - and every
+    # ratio the weekly review computes from this file would then be weighted by
+    # how often a session was interrupted.
+    # ponytail: rewrite the whole file. It is one line per session; if it ever
+    # grows past a few thousand, key it by session in a dict and dump once.
     try:
         LOG.parent.mkdir(parents=True, exist_ok=True)
-        with open(LOG, "a") as fh:
-            fh.write(json.dumps(rec) + "\n")
+        kept = []
+        if LOG.exists():
+            for line in LOG.read_text().splitlines():
+                try:
+                    if json.loads(line).get("session") != rec["session"]:
+                        kept.append(line)
+                except ValueError:
+                    kept.append(line)     # unparseable is still someone's data
+        LOG.write_text("\n".join(kept + [json.dumps(rec)]) + "\n")
     except OSError:
         pass                          # a log that cannot write is not an error
     return 0
